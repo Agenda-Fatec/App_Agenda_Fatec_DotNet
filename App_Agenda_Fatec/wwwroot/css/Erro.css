@@ -1,0 +1,35 @@
+/* Resources: */
+
+@import url("./Global.css");
+
+/* Styles: */
+
+#error {
+
+    height: auto;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    background-color: transparent;
+    padding: 15px;
+
+}
+
+#erro figure {
+
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+
+}
+
+#erro figure img {
+
+    height: 100%;
+    width: 100%;
+
+}

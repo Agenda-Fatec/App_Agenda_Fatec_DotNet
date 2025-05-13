@@ -1,0 +1,141 @@
+/* Resources: */
+
+@import url("./Global.css");
+
+/* Styles: */
+
+#module-form {
+
+    height: auto;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: transparent;
+    padding: 15px;
+
+}
+
+#module-form h1 {
+
+    font-size: 35px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--main-color);
+
+}
+
+#module-form form {
+
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 10px;
+
+}
+
+#module-form form label, #module-form form input, #module-form form textarea, #module-form form select {
+
+    background-color: transparent;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+#module-form form label {
+
+    font-weight: bold;
+    cursor: text;
+
+}
+
+#module-form form input, #module-form form textarea, #module-form form select {
+
+    width: 100%;
+    border: 1px solid var(--neutral-color);
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+
+}
+
+#module-form form textarea {
+
+    height: 150px;
+    resize: none;
+    text-align: left;
+
+}
+
+#module-form form input:focus, #module-form form textarea:focus, #module-form form select:focus {
+
+    border: 1px solid var(--contrast-color);
+
+}
+
+#module-form form select:focus {
+
+    cursor: default;
+
+}
+
+#module-form form #buttons {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#module-form form #buttons a, #module-form form #buttons button {
+
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--neutral-color);
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+
+#module-form form #buttons a {
+
+    text-decoration: none;
+
+}
+
+#module-form form #buttons button, #module-form form #buttons a,
+#module-form form #buttons:hover > button:not(:hover), #module-form form #buttons:hover > a:not(:hover) {
+
+    background-color: transparent;
+    border: 2px solid var(--neutral-color);
+    color: var(--neutral-color);
+
+}
+
+#module-form form #buttons button:hover, #module-form form #buttons button:nth-child(3), #module-form form #buttons a:hover {
+
+    background-color: var(--main-color);
+    border: 2px solid var(--main-color);
+    color: var(--page-color);
+
+}
