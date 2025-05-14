@@ -57,6 +57,8 @@ namespace App_Agenda_Fatec.Models
 
         // Coleções do banco de dados (MongoDB).
 
+        public IMongoCollection<Block> Blocks { get { return this.Database.GetCollection<Block>("Blocks"); } }
+
     }
 
 }

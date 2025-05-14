@@ -1,6 +1,8 @@
-using Microsoft.EntityFrameworkCore;
+ï»¿using Microsoft.EntityFrameworkCore;
 
 using App_Agenda_Fatec.Models;
+
+using App_Agenda_Fatec.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-// Definindo os valores dos atributos de configuração do arquivo de contexto do MongoDB.
+// "Enganando" a aplicaÃ§Ã£o para utilizar os recursos de scaffolding do EntityFramework.
+
+builder.Services.AddDbContext<PseudoDatabaseContext>(options =>
+{
+
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PseudoDatabaseContext") ?? throw new InvalidOperationException("Connection string 'PseudoDatabaseContext' not found."));
+
+});
+
+// Definindo os valores dos atributos de configuraï¿½ï¿½o do arquivo de contexto do MongoDB.
 
 MongoDBContext.Connection_String = builder.Configuration.GetSection("MongoDBConnection:ConnectionString").Value;
 
@@ -16,7 +27,7 @@ MongoDBContext.Database_Name = builder.Configuration.GetSection("MongoDBConnecti
 
 MongoDBContext.Is_Ssl = Convert.ToBoolean(builder.Configuration.GetSection("MongoDBConnection:IsSsl").Value);
 
-// Configurando os recursos de autenticação (Login).
+// Configurando os recursos de autenticaï¿½ï¿½o (Login).
 
 builder.Services.AddIdentity<AppUser, AppRole>().AddMongoDbStores<AppUser, AppRole, Guid>(MongoDBContext.Connection_String, MongoDBContext.Database_Name);
 
@@ -35,18 +46,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Habilita os recursos de autenticação de usuários.
+// Habilita os recursos de autenticaï¿½ï¿½o de usuï¿½rios.
 
 app.UseAuthentication();
 
-// Habilita os recursos de verificação de nível de acesso (Autorizações) do usuário autenticado.
+// Habilita os recursos de verificaï¿½ï¿½o de nï¿½vel de acesso (Autorizaï¿½ï¿½es) do usuï¿½rio autenticado.
 
 app.UseAuthorization();
 
-// Especifica a "Action" que deve ser executada assim que a aplicação entra em execução.
+// Especifica a "Action" que deve ser executada assim que a aplicaï¿½ï¿½o entra em execuï¿½ï¿½o.
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Inicia a execução da aplicação.
+// Inicia a execuï¿½ï¿½o da aplicaï¿½ï¿½o.
 
 app.Run();
