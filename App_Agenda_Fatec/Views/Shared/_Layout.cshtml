@@ -13,49 +13,118 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
         <link rel="stylesheet" href="~/App_Agenda_Fatec.styles.css" asp-append-version="true"/>
 
+        <link rel="stylesheet" type="text/css" href="~/css/Global.css"/>
+
         @await RenderSectionAsync("CSS", required: false)
 
     </head>
 
     <body>
 
-        <header>
+        <div id="blocker">
 
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            
-                <div class="container-fluid">
-                
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> App_Agenda_Fatec </a>
-                
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    
-                        <span class="navbar-toggler-icon">  </span>
+            <div id="menu">
 
-                    </button>
+                <figure> <img src="~/img/Logo.png" alt="Logo">  </figure>
 
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <button id="close-menu"> Fechar Menu </button>
 
-                        <ul class="navbar-nav flex-grow-1">
+                <nav>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"> Home </a>
-                            </li>
+                    <a asp-controller="Home" asp-action="Index"> Início </a>
+                    <a href="#"> Salas </a>
+                    <a href="#"> Equipe </a>
+                    <a href="#"> Ajuda </a>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Block" asp-action="Index"> Blocos </a>
-                            </li>
+                    @{
 
-                        </ul>
+                        if (User?.Identity?.IsAuthenticated ?? false)
+                        {
+
+                            string[][] modules = [["Blocos", "Block"], ["Cargos", "Role"], ["Equipamentos", "Equipment"], ["Salas", "Room"]];
+
+                            <details>
+
+                                <summary> Administração </summary>
+
+                                <details class="module">
+
+                                    <summary> Agendamentos </summary>
+
+                                    <a asp-controller="Scheduling" asp-action="Index"> Requisições </a>
+
+                                </details>
+
+                                @foreach (string[] module in modules)
+                                {
+
+                                    <details class="module">
+
+                                        <summary> @module[0] </summary>
+
+                                        <a asp-controller="@module[1]" asp-action="Create"> Cadastro </a>
+
+                                        <a asp-controller="@module[1]" asp-action="Index"> Listagem </a>
+
+                                    </details>
+
+                                }
+
+                                <details class="module">
+
+                                    <summary> Usuários </summary>
+
+                                    <a asp-controller="User" asp-action="Index"> Listagem </a>
+
+                                </details>
+
+                            </details>
+
+                        }
+
+                    }
+
+                </nav>
+
+            </div>
+
+        </div>
+
+        <div id="container">
+
+            <header>
+
+                <nav>
+
+                    <button id="open-menu"> <i class="bx bx-menu">  </i> </button>
+
+                    <div id="access">
+
+                        @{
+
+                            if (User?.Identity?.IsAuthenticated ?? false)
+                            {
+
+                                <a id="logout" href="#"> Sair </a>
+
+                            }
+
+                            else
+                            {
+
+                                <a href="#"> Cadastro </a>
+
+                                <a href="#"> Login </a>
+
+                            }
+
+                        }
 
                     </div>
 
-                </div>
+                </nav>
 
-            </nav>
-
-        </header>
-
-        <div class="container">
+            </header>
 
             <main role="main" class="pb-3">
 
@@ -65,19 +134,11 @@
 
         </div>
 
-        <footer class="border-top footer text-muted">
-
-            <div class="container">
-
-                &copy; 2025 - App_Agenda_Fatec - <a asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy </a>
-        
-            </div>
-
-        </footer>
-
         <script src="~/lib/jquery/dist/jquery.min.js">  </script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js">  </script>
         <script src="~/js/site.js" asp-append-version="true">  </script>
+
+        <script type="text/javascript" src="~/js/Global.js">  </script>
 
         @await RenderSectionAsync("Scripts", required: false)
 
