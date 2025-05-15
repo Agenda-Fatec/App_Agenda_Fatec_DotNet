@@ -1,47 +1,62 @@
 ﻿@model IEnumerable<App_Agenda_Fatec.Models.Block>
 
 @{
-    ViewData["Title"] = "Index";
+
+    ViewData["Title"] = "Listagem de Blocos";
+
 }
 
-<h1>Index</h1>
+<section id="module-list">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <h1> Listagem de Blocos </h1>
+
+    <a id="new-register" asp-action="Create"> Adicionar </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Name) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Description) </th>
+
+                <th colspan="3"> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Block block in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => block.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => block.Description) </td>
+
+                    <td> <a asp-action="Details" asp-route-id="@block.Id"> Detalhes </a> </td>
+
+                    <td> <a asp-action="Edit" asp-route-id="@block.Id"> Edição </a> </td>
+
+                    <td> <a asp-action="ModifyActivation" asp-route-id="@block.Id"> Ativar/Desativar </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
 }
-    </tbody>
-</table>

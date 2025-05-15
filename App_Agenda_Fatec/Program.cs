@@ -19,7 +19,7 @@ builder.Services.AddDbContext<PseudoDatabaseContext>(options =>
 
 });
 
-// Definindo os valores dos atributos de configura��o do arquivo de contexto do MongoDB.
+// Definindo os valores dos atributos de configuração do arquivo de contexto do MongoDB.
 
 MongoDBContext.Connection_String = builder.Configuration.GetSection("MongoDBConnection:ConnectionString").Value;
 
@@ -27,7 +27,7 @@ MongoDBContext.Database_Name = builder.Configuration.GetSection("MongoDBConnecti
 
 MongoDBContext.Is_Ssl = Convert.ToBoolean(builder.Configuration.GetSection("MongoDBConnection:IsSsl").Value);
 
-// Configurando os recursos de autentica��o (Login).
+// Configurando os recursos de autenticação (Login).
 
 builder.Services.AddIdentity<AppUser, AppRole>().AddMongoDbStores<AppUser, AppRole, Guid>(MongoDBContext.Connection_String, MongoDBContext.Database_Name);
 
@@ -46,18 +46,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Habilita os recursos de autentica��o de usu�rios.
+// Habilita os recursos de autenticação de usuários.
 
 app.UseAuthentication();
 
-// Habilita os recursos de verifica��o de n�vel de acesso (Autoriza��es) do usu�rio autenticado.
+// Habilita os recursos de verificação de nível de acesso (Autorizações) do usuário autenticado.
 
 app.UseAuthorization();
 
-// Especifica a "Action" que deve ser executada assim que a aplica��o entra em execu��o.
+// Especifica a "Action" que deve ser executada assim que a aplicação entra em execução.
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Inicia a execu��o da aplica��o.
+// Inicia a execu��o da aplicação.
 
 app.Run();

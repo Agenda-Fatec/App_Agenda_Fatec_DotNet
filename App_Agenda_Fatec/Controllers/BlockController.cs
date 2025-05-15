@@ -29,7 +29,7 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await this._context.Blocks.Find(b => b.Active).ToListAsync());
+            return View(await this._context.Blocks.Find(FilterDefinition<Block>.Empty).ToListAsync());
 
         }
 
@@ -61,7 +61,7 @@ namespace App_Agenda_Fatec.Controllers
         public IActionResult Create()
         {
 
-            return View();
+            return View(new Block());
 
         }
 
@@ -165,7 +165,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Block/Delete/5
-        public async Task<IActionResult> SoftDelete(Guid? id)
+        public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
             if (id == null)
@@ -189,9 +189,9 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // POST: Block/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SoftDeleteConfirmed(Guid id)
+        public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
         {
 
             var block = await this._context.Blocks.Find(b => b.Id == id).FirstOrDefaultAsync();
@@ -199,7 +199,7 @@ namespace App_Agenda_Fatec.Controllers
             if (block != null)
             {
 
-                block.Active = false;
+                block.Active = !block.Active;
 
                 this._context.Blocks.ReplaceOne(b => b.Id == id, block);
 

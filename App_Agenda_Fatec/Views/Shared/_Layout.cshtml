@@ -9,10 +9,6 @@
 
         <title> @ViewData["Title"] | Agenda Fatec </title>
 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-        <link rel="stylesheet" href="~/App_Agenda_Fatec.styles.css" asp-append-version="true"/>
-
         <link rel="stylesheet" type="text/css" href="~/css/Global.css"/>
 
         @await RenderSectionAsync("CSS", required: false)
@@ -35,6 +31,8 @@
                     <a href="#"> Salas </a>
                     <a href="#"> Equipe </a>
                     <a href="#"> Ajuda </a>
+
+                    <a asp-controller="Block" asp-action="Index"> Blocos </a>
 
                     @{
 

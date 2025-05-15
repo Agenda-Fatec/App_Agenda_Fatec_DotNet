@@ -128,7 +128,7 @@ body {
 
 }
 
-#alert {
+.alert {
 
     font-weight: bold;
     text-transform: uppercase;

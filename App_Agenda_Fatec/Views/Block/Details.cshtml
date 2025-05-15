@@ -1,36 +1,55 @@
 ﻿@model App_Agenda_Fatec.Models.Block
 
 @{
-    ViewData["Title"] = "Details";
+
+    ViewData["Title"] = "Detalhes do Bloco";
+
 }
 
-<h1>Details</h1>
+<h1>Detalhes do Bloco</h1>
 
 <div>
+
     <h4>Block</h4>
+
     <hr />
+
     <dl class="row">
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            Nome:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            Descrição:
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
+            Ativado?
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Active)
         </dd>
+
     </dl>
+
 </div>
+
 <div>
+
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+
 </div>
+
+@section CSS {
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+}

@@ -1,43 +1,49 @@
 ﻿@model App_Agenda_Fatec.Models.Block
 
 @{
-    ViewData["Title"] = "Create";
+
+    ViewData["Title"] = "Cadastro de Bloco";
+
 }
 
-<h1>Create</h1>
+<section id="module-form">
 
-<h4>Block</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+    <h1> Cadastro de Bloco </h1>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <form asp-action="Create">
+
+        <!--<div asp-validation-summary="All" class="text-danger"></div>-->
+
+        <label asp-for="Name">Nome:</label>
+        <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
+        <span asp-validation-for="Name" class="alert"></span>
+
+        <label asp-for="Description">Descrição:</label>
+        <textarea asp-for="Description" id="descricao" maxlength="255"></textarea>
+        <span asp-validation-for="Description" class="alert"></span>
+
+        <input asp-for="Active" type="hidden"/>
+
+        <div id="buttons">
+
+            <a asp-action="Index"> Cancelar </a>
+            <button type="reset"> Limpar </button>
+            <button type="submit"> Salvar </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Form.css" asp-append-version="true"/>
+
+}
 
 @section Scripts {
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
