@@ -8,6 +8,10 @@ namespace App_Agenda_Fatec.Models
     public class Item
     {
 
+        private Guid _id;
+
+        public Guid Id { get { return this._id; } set { this._id = value; } }
+
         public int Quantity { get; set; }
 
         [Required]

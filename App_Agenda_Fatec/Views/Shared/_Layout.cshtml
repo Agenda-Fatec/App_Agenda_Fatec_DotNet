@@ -32,6 +32,9 @@
                     <a asp-controller="Home" asp-action="Team"> Equipe </a>
                     <a asp-controller="Home" asp-action="Help"> Ajuda </a>
 
+                    <a asp-controller="Block" asp-action="Index"> Blocos </a>
+                    <a asp-controller="Equipment" asp-action="Index"> Equipamentos </a>
+
                     @{
 
                         if (User?.Identity?.IsAuthenticated ?? false)

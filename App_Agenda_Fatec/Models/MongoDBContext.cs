@@ -59,6 +59,8 @@ namespace App_Agenda_Fatec.Models
 
         public IMongoCollection<Block> Blocks { get { return this.Database.GetCollection<Block>("Blocks"); } }
 
+        public IMongoCollection<Equipment> Equipments { get { return this.Database.GetCollection<Equipment>("Equipments"); } }
+
     }
 
 }

@@ -10,7 +10,7 @@ namespace App_Agenda_Fatec.Models
 
         private Guid _id;
 
-        public Guid Id { get; set; }
+        public Guid Id { get { return this._id; } set { this._id = value; } }
 
         public DateOnly Request_Date { get; set; } = DateOnly.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
 

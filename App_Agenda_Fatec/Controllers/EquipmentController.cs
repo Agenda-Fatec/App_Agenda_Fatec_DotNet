@@ -13,29 +13,27 @@ using MongoDB.Driver;
 namespace App_Agenda_Fatec.Controllers
 {
 
-    public class BlockController : Controller
+    public class EquipmentController : Controller
     {
 
         private readonly MongoDBContext _context;
 
-        public BlockController()
+        public EquipmentController()
         {
 
             this._context = new MongoDBContext();
 
         }
 
-        // GET: Block
+        // GET: Equipment
         public async Task<IActionResult> Index()
         {
 
-            return View();
-
-            return View(await this._context.Blocks.Find(FilterDefinition<Block>.Empty).ToListAsync());
+            return View(await this._context.Equipments.Find(FilterDefinition<Equipment>.Empty).ToListAsync());
 
         }
 
-        // GET: Block/Details/5
+        // GET: Equipment/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
 
@@ -46,51 +44,51 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            var block = await this._context.Blocks.Find(b => b.Id == id).FirstOrDefaultAsync();
+            var equipment = await this._context.Equipments.Find(e => e.Id == id).FirstOrDefaultAsync();
 
-            if (block == null)
+            if (equipment == null)
             {
 
                 return NotFound();
 
             }
 
-            return View(block);
+            return View(equipment);
 
         }
 
-        // GET: Block/Create
+        // GET: Equipment/Create
         public IActionResult Create()
         {
 
-            return View(new Block());
+            return View(new Equipment());
 
         }
 
-        // POST: Block/Create
+        // POST: Equipment/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Active")] Block block)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Active")] Equipment equipment)
         {
 
             if (ModelState.IsValid)
             {
 
-                block.Id = Guid.NewGuid();
+                equipment.Id = Guid.NewGuid();
 
-                await this._context.Blocks.InsertOneAsync(block);
+                await this._context.Equipments.InsertOneAsync(equipment);
 
                 return RedirectToAction(nameof(Index));
 
             }
 
-            return View(block);
+            return View(equipment);
 
         }
 
-        // GET: Block/Edit/5
+        // GET: Equipment/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
 
@@ -101,28 +99,28 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            var block = await this._context.Blocks.Find(b => b.Id == id).FirstOrDefaultAsync();
+            var equipment = await this._context.Equipments.Find(e => e.Id == id).FirstOrDefaultAsync();
 
-            if (block == null)
+            if (equipment == null)
             {
 
                 return NotFound();
 
             }
 
-            return View(block);
+            return View(equipment);
 
         }
 
-        // POST: Block/Edit/5
+        // POST: Equipment/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Active")] Block block)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Active")] Equipment equipment)
         {
 
-            if (id != block.Id)
+            if (id != equipment.Id)
             {
 
                 return NotFound();
@@ -135,14 +133,14 @@ namespace App_Agenda_Fatec.Controllers
                 try
                 {
 
-                    await this._context.Blocks.ReplaceOneAsync(b => b.Id == id, block);
+                    await this._context.Equipments.ReplaceOneAsync(e => e.Id == id, equipment);
 
                 }
 
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!BlockExists(block.Id))
+                    if (!EquipmentExists(equipment.Id))
                     {
 
                         return NotFound();
@@ -162,11 +160,11 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(block);
+            return View(equipment);
 
         }
 
-        // GET: Block/Delete/5
+        // GET: Equipment/Delete/5
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -177,33 +175,33 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            var block = await this._context.Blocks.Find(b => b.Id == id).FirstOrDefaultAsync();
+            var equipment = await this._context.Equipments.Find(e => e.Id == id).FirstOrDefaultAsync();
 
-            if (block == null)
+            if (equipment == null)
             {
 
                 return NotFound();
 
             }
 
-            return View(block);
+            return View(equipment);
 
         }
 
-        // POST: Block/Delete/5
+        // POST: Equipment/Delete/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
         {
 
-            var block = await this._context.Blocks.Find(b => b.Id == id).FirstOrDefaultAsync();
+            var equipment = await this._context.Equipments.Find(e => e.Id == id).FirstOrDefaultAsync();
 
-            if (block != null)
+            if (equipment != null)
             {
 
-                block.Active = !block.Active;
+                equipment.Active = !equipment.Active;
 
-                await this._context.Blocks.ReplaceOneAsync(b => b.Id == id, block);
+                await this._context.Equipments.ReplaceOneAsync(e => e.Id == id, equipment);
 
             }
 
@@ -211,10 +209,10 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        private bool BlockExists(Guid id)
+        private bool EquipmentExists(Guid id)
         {
 
-            return this._context.Blocks.Find(b => b.Id == id).Any();
+            return this._context.Equipments.Find(e => e.Id == id).Any();
 
         }
 

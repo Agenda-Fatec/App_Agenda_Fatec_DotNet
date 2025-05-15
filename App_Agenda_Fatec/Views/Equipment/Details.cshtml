@@ -1,16 +1,16 @@
-﻿@model App_Agenda_Fatec.Models.Block
+﻿@model App_Agenda_Fatec.Models.Equipment
 
 @{
 
-    ViewData["Title"] = "Alteração da Ativação do Bloco";
+    ViewData["Title"] = "Detalhes do Equipamento";
 
 }
 
-<h1>Alteração da Ativação do Bloco</h1>
+<h1>Detalhes do Equipamento</h1>
 
 <div>
 
-    <h4>Block</h4>
+    <h4>Equipment</h4>
 
     <hr />
 
@@ -38,14 +38,13 @@
         </dd>
 
     </dl>
-    
-    <form asp-action="ModifyActivation">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+</div>
 
-    </form>
+<div>
+
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 
 </div>
 

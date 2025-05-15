@@ -1,0 +1,62 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.Equipment>
+
+@{
+
+    ViewData["Title"] = "Listagem de Equipamentos";
+
+}
+
+<section id="module-list">
+
+    <h1> Listagem de Equipamentos </h1>
+
+    <a id="new-register" asp-action="Create"> Adicionar </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Name) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Description) </th>
+
+                <th colspan="3"> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Equipment equipment in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => equipment.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => equipment.Description) </td>
+
+                    <td> <a asp-action="Details" asp-route-id="@equipment.Id"> Detalhes </a> </td>
+
+                    <td> <a asp-action="Edit" asp-route-id="@equipment.Id"> Edição </a> </td>
+
+                    <td> <a asp-action="ModifyActivation" asp-route-id="@equipment.Id"> Ativar/Desativar </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
+}
