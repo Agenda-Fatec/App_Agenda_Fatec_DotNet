@@ -53,7 +53,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (block.Active) ? "Ativado" : "Desativado";
+            ViewBag.Activation = (block.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(block);
 
@@ -186,7 +186,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (block.Active) ? "Ativado" : "Desativado";
+            ViewBag.Activation = (block.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(block);
 

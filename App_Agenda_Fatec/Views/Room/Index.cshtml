@@ -1,0 +1,74 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.Room>
+
+@{
+
+    ViewData["Title"] = "Listagem de Salas";
+
+}
+
+<section id="module-list">
+
+    <h1> Listagem de Salas </h1>
+
+    <a id="new-register" asp-action="Create"> Adicionar </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Name) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Number) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Description) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Situation) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Block) </th>
+
+                <th colspan="3"> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Room room in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => room.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => room.Number) </td>
+
+                    <td> @Html.DisplayFor(modelItem => room.Description) </td>
+
+                    <td> @Html.DisplayFor(modelItem => room.Situation) </td>
+
+                    <td> @Html.DisplayFor(modelItem => room.Block.Name) </td>
+
+                    <td> <a asp-action="Details" asp-route-id="@room.Id"> Detalhes </a> </td>
+
+                    <td> <a asp-action="Edit" asp-route-id="@room.Id"> Edição </a> </td>
+
+                    <td> <a asp-action="ModifyActivation" asp-route-id="@room.Id"> Ativar/Desativar </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
+}

@@ -1,16 +1,14 @@
-﻿@model App_Agenda_Fatec.Models.Block
+﻿@model App_Agenda_Fatec.Models.Room
 
 @{
-
-    ViewData["Title"] = "Detalhes do Bloco";
-
+    ViewData["Title"] = "Detalhes da Sala";
 }
 
-<h1>Detalhes do Bloco</h1>
+<h1>Detalhes da Sala</h1>
 
 <div>
 
-    <h4>Block</h4>
+    <h4>Room</h4>
 
     <hr />
 
@@ -24,6 +22,13 @@
         </dd>
 
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd class = "col-sm-10">
@@ -31,10 +36,24 @@
         </dd>
 
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Situation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Situation)
+        </dd>
+
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Active)
         </dt>
         <dd class = "col-sm-10">
             @ViewBag.Activation
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Block)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Block.Name)
         </dd>
 
     </dl>

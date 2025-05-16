@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace App_Agenda_Fatec.Models
 {
 
@@ -13,32 +11,26 @@ namespace App_Agenda_Fatec.Models
         public Guid Id { get { return this._id; } set { this._id = value; } }
 
         [Required]
+        [Display(Name = "Nome")]
         public string? Name { get; set; }
 
         [Required]
+        [Display(Name = "Número")]
         public int Number { get; set; }
 
+        [Display(Name = "Descrição")]
         public string? Description { get; set; } = "Nenhuma descrição."; // Valor padrão.
 
+        [Display(Name = "Situação Atual")]
         public string? Situation { get; set; } = "Disponível"; // Valor padrão.
 
-        [Display(Name = "Stats")]
-        public bool Active { get; set; } = true; // Valor padrão.
+        [Display(Name = "Status")]
+        public bool? Active { get; set; } = true; // Valor padrão.
 
-        [Required]
-        [Display(Name = "Block")]
-        public Guid Block_Guid { get; set; }
-
-        [NotMapped]
-        [Display(Name = "Block Name")]
+        [Display(Name = "Bloco")]
         public Block? Block { get; set; }
 
-        [Required]
-        [Display(Name = "Items")]
-        public List<Guid> Items_Guids { get; set; } = new List<Guid>(); // Valor padrão.
-
-        [NotMapped]
-        [Display(Name = "Items Names")]
+        [Display(Name = "Itens")]
         public List<Item> Items { get; set; } = new List<Item>(); // Valor padrão.
 
     }

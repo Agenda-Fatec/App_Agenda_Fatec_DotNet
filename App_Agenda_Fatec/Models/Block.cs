@@ -19,7 +19,7 @@ namespace App_Agenda_Fatec.Models
         public string? Description { get; set; } = "Nenhuma descrição."; // Valor padrão.
 
         [Display(Name = "Status")]
-        public bool Active { get; set; } = true; // Valor padrão.
+        public bool? Active { get; set; } = true; // Valor padrão.
 
     }
 

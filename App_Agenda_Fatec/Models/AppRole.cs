@@ -11,7 +11,7 @@ namespace App_Agenda_Fatec.Models
 
         // Campos personalizados.
 
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
 
     }
 

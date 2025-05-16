@@ -63,6 +63,8 @@ namespace App_Agenda_Fatec.Models
 
         public IMongoCollection<AppRole> Roles { get { return this.Database.GetCollection<AppRole>("Roles"); } }
 
+        public IMongoCollection<Room> Rooms { get { return this.Database.GetCollection<Room>("Rooms"); } }
+
     }
 
 }

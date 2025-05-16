@@ -1,0 +1,67 @@
+﻿@model App_Agenda_Fatec.Models.Room
+
+@{
+
+    ViewData["Title"] = "Cadastro de Sala";
+
+}
+
+<section id="module-form">
+
+    <h1> Cadastro de Sala </h1>
+
+    <form asp-action="Create">
+
+        <div asp-validation-summary="ModelOnly" class="alert"></div>
+
+        <label asp-for="Name">Nome:</label>
+        <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
+        <span asp-validation-for="Name" class="alert"></span>
+
+        <label asp-for="Number">Número:</label>
+        <input asp-for="Number" type="number" id="numero" min="0" max="1000" autocomplete="off"/>
+        <span asp-validation-for="Number" class="alert"></span>
+
+        <label asp-for="Description">Descrição:</label>
+        <textarea asp-for="Description" id="descricao" maxlength="255"></textarea>
+        <span asp-validation-for="Description" class="alert"></span>
+
+        <input asp-for="Situation" type="hidden"/>
+
+        <input asp-for="Active" type="hidden"/>
+
+        <label for="block_guid">Bloco:</label>
+        <select name="block_guid" id="id_bloco">
+
+            @foreach (Block block in ViewBag.Blocks)
+            {
+                
+                <option value="@block.Id"> @block.Name </option>
+
+            }
+
+        </select>
+
+        <div id="buttons">
+
+            <a asp-action="Index"> Cancelar </a>
+            <button type="reset"> Limpar </button>
+            <button type="submit"> Salvar </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Form.css" asp-append-version="true"/>
+
+}
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
