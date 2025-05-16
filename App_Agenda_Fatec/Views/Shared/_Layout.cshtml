@@ -32,12 +32,11 @@
                     <a asp-controller="Home" asp-action="Team"> Equipe </a>
                     <a asp-controller="Home" asp-action="Help"> Ajuda </a>
 
-                    <a asp-controller="Block" asp-action="Index"> Blocos </a>
-                    <a asp-controller="Equipment" asp-action="Index"> Equipamentos </a>
-
                     @{
 
-                        if (User?.Identity?.IsAuthenticated ?? false)
+                        // Testando (Será corrigido após a implementação do login.).
+
+                        if (true)
                         {
 
                             string[][] modules = [["Blocos", "Block"], ["Cargos", "Role"], ["Equipamentos", "Equipment"], ["Salas", "Room"]];
@@ -46,36 +45,16 @@
 
                                 <summary> Administração </summary>
 
-                                <details class="module">
-
-                                    <summary> Agendamentos </summary>
-
-                                    <a asp-controller="Scheduling" asp-action="Index"> Requisições </a>
-
-                                </details>
+                                <a asp-controller="Scheduling" asp-action="Index"> Requisições </a>
 
                                 @foreach (string[] module in modules)
                                 {
 
-                                    <details class="module">
-
-                                        <summary> @module[0] </summary>
-
-                                        <a asp-controller="@module[1]" asp-action="Create"> Cadastro </a>
-
-                                        <a asp-controller="@module[1]" asp-action="Index"> Listagem </a>
-
-                                    </details>
+                                    <a asp-controller="@module[1]" asp-action="Index"> @module[0] </a>
 
                                 }
 
-                                <details class="module">
-
-                                    <summary> Usuários </summary>
-
-                                    <a asp-controller="User" asp-action="Index"> Listagem </a>
-
-                                </details>
+                                <a asp-controller="User" asp-action="Index"> Usuários </a>
 
                             </details>
 

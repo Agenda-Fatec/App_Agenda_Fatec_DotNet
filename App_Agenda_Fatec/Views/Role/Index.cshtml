@@ -1,0 +1,58 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.Role>
+
+@{
+
+    ViewData["Title"] = "Index";
+
+}
+
+<section id="module-list">
+
+    <h1> Listagem de Cargos </h1>
+
+    <a id="new-register" asp-action="Create">  Adicionar </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Name) </th>
+
+                <th colspan="3"> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Role role in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => role.Name) </td>
+
+                    <td> <a asp-action="Details" asp-route-id="@role.Id"> Detalhes </a> </td>
+
+                    <td> <a asp-action="Edit" asp-route-id="@role.Id"> Edição </a> </td>
+
+                    <td> <a asp-action="ModifyActivation" asp-route-id="@role.Id"> Ativar/Desativar </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
+}

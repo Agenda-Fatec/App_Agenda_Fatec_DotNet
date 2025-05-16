@@ -112,12 +112,6 @@
 
 }
 
-#blocker #menu nav details .module {
-
-    margin: 25px 0 0 35px;
-
-}
-
 #blocker #menu nav a {
 
     display: flex;
@@ -137,7 +131,7 @@
 
 #blocker #menu nav details a {
 
-    padding-left: 35px;
+    margin: 25px 0 0 35px;
 
 }
 

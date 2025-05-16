@@ -1,16 +1,16 @@
-﻿@model App_Agenda_Fatec.Models.Block
+﻿@model App_Agenda_Fatec.Models.Role
 
 @{
 
-    ViewData["Title"] = "Alteração da Ativação do Bloco";
+    ViewData["Title"] = "Alteração da Ativação do Cargo";
 
 }
 
-<h1>Alteração da Ativação do Bloco</h1>
+<h1>Alteração da Ativação do Cargo</h1>
 
 <div>
 
-    <h4>Block</h4>
+    <h4>Role</h4>
 
     <hr />
 
@@ -21,13 +21,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt class = "col-sm-2">

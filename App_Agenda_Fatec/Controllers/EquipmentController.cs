@@ -53,6 +53,8 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
+            ViewBag.Activation = (equipment.Active) ? "Ativado" : "Desativado";
+
             return View(equipment);
 
         }
@@ -183,6 +185,8 @@ namespace App_Agenda_Fatec.Controllers
                 return NotFound();
 
             }
+
+            ViewBag.Activation = (equipment.Active) ? "Ativado" : "Desativado";
 
             return View(equipment);
 

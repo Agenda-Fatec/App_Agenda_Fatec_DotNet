@@ -29,8 +29,6 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View();
-
             return View(await this._context.Blocks.Find(FilterDefinition<Block>.Empty).ToListAsync());
 
         }
@@ -54,6 +52,8 @@ namespace App_Agenda_Fatec.Controllers
                 return NotFound();
 
             }
+
+            ViewBag.Activation = (block.Active) ? "Ativado" : "Desativado";
 
             return View(block);
 
@@ -185,6 +185,8 @@ namespace App_Agenda_Fatec.Controllers
                 return NotFound();
 
             }
+
+            ViewBag.Activation = (block.Active) ? "Ativado" : "Desativado";
 
             return View(block);
 

@@ -9,7 +9,9 @@ namespace App_Agenda_Fatec.Models
     public class AppRole : MongoIdentityRole // Model padronizada utilizada para cadastrar cargos.
     {
 
+        // Campos personalizados.
 
+        public bool Active { get; set; }
 
     }
 
