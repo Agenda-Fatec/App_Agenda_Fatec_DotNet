@@ -6,33 +6,84 @@
 
 #rooms {
 
-    height: auto;
+    height: 100%;
     width: 100%;
     min-height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
+    justify-content: center;
+    gap: 25px;
     background-color: transparent;
     padding: 80px 15px 15px 15px;
 
 }
 
-#rooms h1 {
+#rooms #images {
 
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 15px;
+
+}
+
+#rooms #images figure {
+
+    height: 49%;
+    min-width: 100%;
+    max-height: 49%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+#rooms #images figure img {
+
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+#rooms #list {
+
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-color: var(--main-color) var(--page-color);
+
+}
+
+#rooms #list h1 {
+
+    width: 100%;
     font-size: 35px;
     font-weight: bolder;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
     color: var(--main-color);
     margin-bottom: 25px;
 
 }
 
-#rooms .room {
+#rooms #list .room {
 
     width: 100%;
+    min-height: 65px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,7 +97,7 @@
 
 }
 
-#rooms .room h2 {
+#rooms #list .room h2 {
 
     max-width: 100%;
     font-size: 20px;
@@ -58,8 +109,88 @@
 
 }
 
-#rooms .room:hover h2 {
+#rooms #list .room:hover h2 {
 
     color: var(--main-color);
+
+}
+
+/* Responsiveness: */
+
+@media (max-width: 1180px) {
+
+    #rooms {
+
+        height: auto;
+        justify-content: flex-start;
+        flex-direction: column;
+
+    }
+
+    #rooms #images, #rooms #list {
+
+        height: auto;
+        width: 100%;
+
+    }
+
+    #rooms #images {
+
+        flex-direction: row;
+        border: none;
+
+    }
+
+    #rooms #list {
+
+        overflow-y: hidden;
+
+    }
+
+    #rooms #images figure:nth-child(2) {
+
+        display: none;
+
+    }
+
+    #rooms #images figure {
+
+        min-height: 400px;
+        min-width: 500px;
+        max-height: 400px;
+        max-width: 500px;
+
+    }
+
+    #rooms #list h1 {
+
+        text-align: center;
+    
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    #rooms #images figure:nth-child(1) {
+
+        display: none;
+
+    }
+
+    #rooms #images figure:nth-child(2) {
+
+        display: flex;
+
+    }
+
+    #rooms #images figure {
+
+        min-height: 300px;
+        min-width: 300px;
+        max-height: 300px;
+        max-width: 300px;
+
+    }
 
 }

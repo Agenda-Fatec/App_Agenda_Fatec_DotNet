@@ -26,6 +26,14 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        // GET: Room/Available
+        public async Task<IActionResult> Available()
+        {
+
+            return View(await this._context.Rooms.Find(r => r.Active ?? false).ToListAsync());
+
+        }
+
         // GET: Room
         public async Task<IActionResult> Index()
         {
@@ -64,7 +72,7 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Create()
         {
 
-            ViewBag.Blocks = await this._context.Blocks.Find(b => b.Active == true).ToListAsync();
+            ViewBag.Blocks = await this._context.Blocks.Find(b => b.Active ?? false).ToListAsync();
 
             return View(new Room());
 

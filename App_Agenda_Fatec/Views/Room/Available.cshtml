@@ -1,0 +1,44 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.Room>
+
+@{
+
+    ViewData["Title"] = "Salas Disponíveis";
+
+}
+
+<section id="rooms">
+
+    <div id="images">
+
+        <figure> <img src="~/img/Storyset/Sala-01.svg" alt="Sala-01"> </figure>
+
+        <figure> <img src="~/img/Storyset/Sala-02.svg" alt="Sala-02"> </figure>
+
+    </div>
+
+    <div id="list">
+
+        <h1> Salas da Fatec Jahu </h1>
+
+        @foreach (Room room in Model)
+        {
+
+            string text = $"{room.Name} ({room.Number})";
+
+            <a class="room" asp-action="Details" asp-route-id="@room.Id">
+
+                <h2 class="room-name"> @text </h2>
+
+            </a>
+
+        }
+
+    </div>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Salas.css" asp-append-version="true"/>
+
+}

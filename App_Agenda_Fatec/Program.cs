@@ -58,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Inicia a execu��o da aplicação.
+// Inicia a execução da aplicação.
 
 app.Run();
