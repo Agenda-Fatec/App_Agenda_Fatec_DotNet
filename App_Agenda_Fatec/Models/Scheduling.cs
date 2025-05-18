@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace App_Agenda_Fatec.Models
 {
@@ -12,44 +12,47 @@ namespace App_Agenda_Fatec.Models
 
         public Guid Id { get { return this._id; } set { this._id = value; } }
 
+        [Display(Name = "Data de Requisição")]
         public DateOnly Request_Date { get; set; } = DateOnly.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
 
+        [Display(Name = "Hora de Requisição")]
         public TimeOnly Request_Time { get; set; } = TimeOnly.Parse(DateTime.Now.ToString("HH:mm:ss"));
 
         [Required]
+        [Display(Name = "Data de Utilização")]
         public DateOnly Utilization_Date { get; set; }
 
         [Required]
+        [Display(Name = "Hora Inicial de Utilização")]
         public TimeOnly Start_Utilization_Time { get; set; }
 
         [Required]
+        [Display(Name = "Hora Final de Utilização")]
         public TimeOnly End_Utilization_Time { get; set; }
 
-        public string? Situation { get; set; } = "Pendente";
+        [Display(Name = "Situação Atual")]
+        public string? Situation { get; set; } = "Pendente"; // Valor padrão.
 
         [Required]
-        [Display(Name = "Room")]
         public Guid Room_Guid { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Room Name")]
-        public Room? Room { get; set; }
+        [BsonIgnore]
+        [Display(Name = "Sala")]
+        public Room? Room { get; set; } = null; // Valor padrão.
 
         [Required]
-        [Display(Name = "Requestor")]
         public Guid Requestor_Guid { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Requestor Name")]
-        public User? Requestor { get; set; }
+        [BsonIgnore]
+        [Display(Name = "Requisitor")]
+        public User? Requestor { get; set; } = null; // Valor padrão.
 
         [Required]
-        [Display(Name = "Approver")]
         public Guid Approver_Guid { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Approver Name")]
-        public User? Approver { get; set; }
+        [BsonIgnore]
+        [Display(Name = "Aprovador")]
+        public User? Approver { get; set; } = null; // Valor padrão.
 
     }
 

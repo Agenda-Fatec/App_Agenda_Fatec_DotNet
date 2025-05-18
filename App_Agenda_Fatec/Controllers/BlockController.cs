@@ -29,7 +29,16 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await this._context.Blocks.Find(FilterDefinition<Block>.Empty).ToListAsync());
+            List<Block> blocks = await this._context.Blocks.Find(FilterDefinition<Block>.Empty).ToListAsync();
+
+            foreach (Block block in blocks)
+            {
+
+                block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
+
+            }
+
+            return View(blocks);
 
         }
 
@@ -53,7 +62,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (block.Active ?? false) ? "Ativado" : "Desativado";
+            block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(block);
 
@@ -186,7 +195,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (block.Active ?? false) ? "Ativado" : "Desativado";
+            block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(block);
 

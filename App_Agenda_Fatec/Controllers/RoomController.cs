@@ -52,6 +52,8 @@ namespace App_Agenda_Fatec.Controllers
             foreach (Room room in rooms)
             {
 
+                room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
+
                 room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
             }
@@ -80,7 +82,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (room.Active ?? false) ? "Ativado" : "Desativado";
+            room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
@@ -219,7 +221,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (room.Active ?? false) ? "Ativado" : "Desativado";
+            room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 

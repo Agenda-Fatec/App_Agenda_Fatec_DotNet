@@ -67,8 +67,6 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (role.Active ?? false) ? "Ativado" : "Desativado";
-
             return View(this.GenerateEquivalentObject(role));
 
         }
@@ -253,8 +251,6 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (role.Active ?? false) ? "Ativado" : "Desativado";
-
             return View(this.GenerateEquivalentObject(role));
 
         }
@@ -314,6 +310,8 @@ namespace App_Agenda_Fatec.Controllers
                 Active = document.Active
 
             };
+
+            role.Activation_Stats = (role.Active ?? false) ? "Ativado" : "Desativado";
 
             return role;
 

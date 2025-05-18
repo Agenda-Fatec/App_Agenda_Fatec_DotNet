@@ -29,7 +29,16 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await this._context.Equipments.Find(FilterDefinition<Equipment>.Empty).ToListAsync());
+            List<Equipment> equipments = await this._context.Equipments.Find(FilterDefinition<Equipment>.Empty).ToListAsync();
+
+            foreach (Equipment equipment in equipments)
+            {
+
+                equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+
+            }
+
+            return View(equipments);
 
         }
 
@@ -53,7 +62,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+            equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(equipment);
 
@@ -186,7 +195,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            ViewBag.Activation = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+            equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
 
             return View(equipment);
 

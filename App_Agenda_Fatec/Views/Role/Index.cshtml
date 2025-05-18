@@ -20,6 +20,8 @@
 
                 <th> @Html.DisplayNameFor(model => model.Name) </th>
 
+                <th> @Html.DisplayNameFor(model => model.Activation_Stats) </th>
+
                 <th colspan="3"> Opções </th>
 
             </tr>
@@ -34,6 +36,8 @@
                 <tr>
 
                     <td> @Html.DisplayFor(modelItem => role.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => role.Activation_Stats) </td>
 
                     <td> <a asp-action="Details" asp-route-id="@role.Id"> Detalhes </a> </td>
 

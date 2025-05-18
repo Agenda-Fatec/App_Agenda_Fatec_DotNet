@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace App_Agenda_Fatec.Models
 {
 
@@ -24,13 +26,16 @@ namespace App_Agenda_Fatec.Models
         [Display(Name = "Situação Atual")]
         public string? Situation { get; set; } = "Disponível"; // Valor padrão.
 
-        [Display(Name = "Status")]
         public bool? Active { get; set; } = true; // Valor padrão.
 
+        [BsonIgnore]
+        [Display(Name = "Status")]
+        public string? Activation_Stats { get; set; }
+
         [Required]
-        [Display(Name = "Bloco (GUID)")]
         public Guid Block_Guid { get; set; }
 
+        [BsonIgnore]
         [Display(Name = "Bloco")]
         public Block? Block { get; set; } = null; // Valor padrão.
 
