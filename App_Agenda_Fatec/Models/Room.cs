@@ -27,8 +27,12 @@ namespace App_Agenda_Fatec.Models
         [Display(Name = "Status")]
         public bool? Active { get; set; } = true; // Valor padrão.
 
+        [Required]
+        [Display(Name = "Bloco (GUID)")]
+        public Guid Block_Guid { get; set; }
+
         [Display(Name = "Bloco")]
-        public Block? Block { get; set; }
+        public Block? Block { get; set; } = null; // Valor padrão.
 
         [Display(Name = "Itens")]
         public List<Item> Items { get; set; } = new List<Item>(); // Valor padrão.

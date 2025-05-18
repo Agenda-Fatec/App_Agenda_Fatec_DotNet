@@ -30,7 +30,16 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Available()
         {
 
-            return View(await this._context.Rooms.Find(r => r.Active ?? false).ToListAsync());
+            List<Room> rooms = await this._context.Rooms.Find(r => r.Active ?? false).ToListAsync();
+
+            foreach (Room room in rooms)
+            {
+
+                room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
+
+            }
+
+            return View(rooms);
 
         }
 
@@ -38,7 +47,16 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await this._context.Rooms.Find(FilterDefinition<Room>.Empty).ToListAsync());
+            List<Room> rooms = await this._context.Rooms.Find(FilterDefinition<Room>.Empty).ToListAsync();
+
+            foreach (Room room in rooms)
+            {
+
+                room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
+
+            }
+
+            return View(rooms);
 
         }
 
@@ -64,6 +82,8 @@ namespace App_Agenda_Fatec.Controllers
 
             ViewBag.Activation = (room.Active ?? false) ? "Ativado" : "Desativado";
 
+            room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
+
             return View(room);
 
         }
@@ -83,19 +103,13 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Number,Description,Situation,Active")] Room room, [Required] Guid block_guid)
+        public async Task<IActionResult> Create([Bind("Id,Name,Number,Description,Situation,Active,Block_Guid")] Room room, [Required] Guid block_guid)
         {
 
             if (ModelState.IsValid)
             {
 
                 room.Id = Guid.NewGuid();
-
-                Block room_block = await this._context.Blocks.Find(b => b.Id == block_guid).FirstOrDefaultAsync();
-
-                room_block.Active = null; // Esse campo não é necessário no contexto atual.
-
-                room.Block = room_block;
 
                 await this._context.Rooms.InsertOneAsync(room);
 
@@ -138,7 +152,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Number,Description,Situation,Active")] Room room, [Required] Guid block_guid)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Number,Description,Situation,Active,Block_Guid")] Room room, [Required] Guid block_guid)
         {
 
             if (id != room.Id)
@@ -153,12 +167,6 @@ namespace App_Agenda_Fatec.Controllers
 
                 try
                 {
-
-                    Block room_block = await this._context.Blocks.Find(b => b.Id == block_guid).FirstOrDefaultAsync();
-
-                    room_block.Active = null; // Esse campo não é necessário no contexto atual.
-
-                    room.Block = room_block;
 
                     await this._context.Rooms.ReplaceOneAsync(r => r.Id == id, room);
 
@@ -212,6 +220,8 @@ namespace App_Agenda_Fatec.Controllers
             }
 
             ViewBag.Activation = (room.Active ?? false) ? "Ativado" : "Desativado";
+
+            room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
             return View(room);
 

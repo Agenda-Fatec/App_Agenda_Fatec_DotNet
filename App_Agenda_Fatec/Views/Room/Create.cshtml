@@ -30,8 +30,8 @@
 
         <input asp-for="Active" type="hidden"/>
 
-        <label for="block_guid">Bloco:</label>
-        <select name="block_guid" id="id_bloco">
+        <label asp-for="Block_Guid">Bloco:</label>
+        <select asp-for="Block_Guid" id="id_bloco">
 
             @foreach (Block block in ViewBag.Blocks)
             {
@@ -41,6 +41,7 @@
             }
 
         </select>
+        <span asp-validation-for="Block_Guid" class="alert"></span>
 
         <div id="buttons">
 

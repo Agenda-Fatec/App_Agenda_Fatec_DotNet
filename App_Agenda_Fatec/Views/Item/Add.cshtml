@@ -1,0 +1,58 @@
+﻿@model App_Agenda_Fatec.Models.Item
+
+@{
+
+    ViewData["Title"] = "Adição de Item";
+
+}
+
+<section id="module-form">
+
+    <h1> Adição de Item </h1>
+
+    <form asp-action="Add">
+
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <label asp-for="Quantity">Quantidade:</label>
+        <input asp-for="Quantity" type="number" id="quantidade" min="1" max="300" autocomplete="off"/>
+        <span asp-validation-for="Quantity" class="alert"></span>
+
+        <input type="hidden" name="room_guid" value="@ViewBag.Room"/>
+
+        <label asp-for="Equipment_Guid">Equipamento:</label>
+        <select asp-for="Equipment_Guid" id="id_equipamento">
+
+            @foreach (Equipment equipment in ViewBag.Equipments)
+            {
+                
+                <option value="@equipment.Id"> @equipment.Name </option>
+
+            }
+
+        </select>
+        <span asp-validation-for="Equipment_Guid" class="alert"></span>
+
+        <div id="buttons">
+
+            <a asp-controller="Room" asp-action="Details" asp-route-id="@ViewBag.Room"> Cancelar </a>
+            <button type="reset"> Limpar </button>
+            <button type="submit"> Salvar </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Form.css" asp-append-version="true"/>
+
+}
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
