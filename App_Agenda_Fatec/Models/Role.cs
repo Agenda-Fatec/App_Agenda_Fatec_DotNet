@@ -14,7 +14,7 @@ namespace App_Agenda_Fatec.Models
         [Display(Name = "Nome")]
         public string? Name { get; set; }
 
-        public bool? Active { get; set; } = true; // Valor padrão.
+        public bool Active { get; set; } = true; // Valor padrão.
 
         [Display(Name = "Status")]
         public string? Activation_Stats { get; set; }

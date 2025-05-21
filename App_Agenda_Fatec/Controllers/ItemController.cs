@@ -32,7 +32,7 @@ namespace App_Agenda_Fatec.Controllers
 
             ViewBag.Room = room_guid;
 
-            ViewBag.Equipments = await this._context.Equipments.Find(e => e.Active ?? false).ToListAsync();
+            ViewBag.Equipments = await this._context.Equipments.Find(e => e.Active).ToListAsync();
 
             return View(new Item());
 
@@ -87,7 +87,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Item/Remove/5
+        // GET: Item/Remove
         public async Task<IActionResult> Remove(Guid? room_guid, Guid? equipment_guid)
         {
 
@@ -117,7 +117,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // POST: Item/Remove/5
+        // POST: Item/Remove
         [HttpPost, ActionName("Remove")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveConfirmed(Guid room_guid, Guid equipment_guid)

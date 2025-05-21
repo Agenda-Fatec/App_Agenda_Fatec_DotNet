@@ -26,7 +26,7 @@ namespace App_Agenda_Fatec.Models
         [Display(Name = "Situação Atual")]
         public string? Situation { get; set; } = "Disponível"; // Valor padrão.
 
-        public bool? Active { get; set; } = true; // Valor padrão.
+        public bool Active { get; set; } = true; // Valor padrão.
 
         [BsonIgnore]
         [Display(Name = "Status")]

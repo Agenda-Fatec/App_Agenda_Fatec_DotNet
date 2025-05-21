@@ -34,7 +34,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (Block block in blocks)
             {
 
-                block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
+                block.Activation_Stats = (block.Active) ? "Ativado" : "Desativado";
 
             }
 
@@ -62,7 +62,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
+            block.Activation_Stats = (block.Active) ? "Ativado" : "Desativado";
 
             return View(block);
 
@@ -175,7 +175,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Block/Delete/5
+        // GET: Block/ModifyActivation/5
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -195,13 +195,13 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            block.Activation_Stats = (block.Active ?? false) ? "Ativado" : "Desativado";
+            block.Activation_Stats = (block.Active) ? "Ativado" : "Desativado";
 
             return View(block);
 
         }
 
-        // POST: Block/Delete/5
+        // POST: Block/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)

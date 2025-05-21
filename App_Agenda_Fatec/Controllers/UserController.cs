@@ -142,7 +142,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: User/Delete/5
+        // GET: User/ModifyActivation/5
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -166,7 +166,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // POST: User/Delete/5
+        // POST: User/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
@@ -214,7 +214,7 @@ namespace App_Agenda_Fatec.Controllers
 
             };
 
-            user.Activation_Stats = (user.Active ?? false) ? "Ativado" : "Desativado";
+            user.Activation_Stats = (user.Active) ? "Ativado" : "Desativado";
 
             foreach (Guid role_guid in app_user.Roles)
             {

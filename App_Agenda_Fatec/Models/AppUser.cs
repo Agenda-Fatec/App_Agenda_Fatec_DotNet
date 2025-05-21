@@ -15,7 +15,7 @@ namespace App_Agenda_Fatec.Models
 
         public bool Administrator { get; set; }
 
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
     }
 

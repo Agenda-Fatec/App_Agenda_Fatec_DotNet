@@ -30,7 +30,7 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Available()
         {
 
-            List<Room> rooms = await this._context.Rooms.Find(r => r.Active ?? false).ToListAsync();
+            List<Room> rooms = await this._context.Rooms.Find(r => r.Active).ToListAsync();
 
             foreach (Room room in rooms)
             {
@@ -52,7 +52,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (Room room in rooms)
             {
 
-                room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
+                room.Activation_Stats = (room.Active) ? "Ativada" : "Desativada";
 
                 room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
@@ -82,7 +82,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
+            room.Activation_Stats = (room.Active) ? "Ativada" : "Desativada";
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
@@ -94,7 +94,7 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Create()
         {
 
-            ViewBag.Blocks = await this._context.Blocks.Find(b => b.Active ?? false).ToListAsync();
+            ViewBag.Blocks = await this._context.Blocks.Find(b => b.Active).ToListAsync();
 
             return View(new Room());
 
@@ -201,7 +201,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Room/Delete/5
+        // GET: Room/ModifyActivation/5
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -221,7 +221,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            room.Activation_Stats = (room.Active ?? false) ? "Ativada" : "Desativada";
+            room.Activation_Stats = (room.Active) ? "Ativada" : "Desativada";
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
@@ -229,7 +229,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // POST: Room/Delete/5
+        // POST: Room/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)

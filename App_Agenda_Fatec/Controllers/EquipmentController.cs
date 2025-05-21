@@ -34,7 +34,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (Equipment equipment in equipments)
             {
 
-                equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+                equipment.Activation_Stats = (equipment.Active) ? "Ativado" : "Desativado";
 
             }
 
@@ -62,7 +62,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+            equipment.Activation_Stats = (equipment.Active) ? "Ativado" : "Desativado";
 
             return View(equipment);
 
@@ -175,7 +175,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Equipment/Delete/5
+        // GET: Equipment/ModifyActivation/5
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -195,13 +195,13 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            equipment.Activation_Stats = (equipment.Active ?? false) ? "Ativado" : "Desativado";
+            equipment.Activation_Stats = (equipment.Active) ? "Ativado" : "Desativado";
 
             return View(equipment);
 
         }
 
-        // POST: Equipment/Delete/5
+        // POST: Equipment/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)

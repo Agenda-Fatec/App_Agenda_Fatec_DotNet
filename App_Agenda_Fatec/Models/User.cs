@@ -36,7 +36,7 @@ namespace App_Agenda_Fatec.Models
         [BsonIgnore]
         public bool Administrator { get; set; } = false; // Valor padrão.
 
-        public bool? Active { get; set; } = true; // Valor padrão.
+        public bool Active { get; set; } = true; // Valor padrão.
 
         [Display(Name = "Status")]
         public string? Activation_Stats { get; set; }
