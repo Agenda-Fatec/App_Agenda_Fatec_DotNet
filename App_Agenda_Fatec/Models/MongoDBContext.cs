@@ -67,6 +67,8 @@ namespace App_Agenda_Fatec.Models
 
         public IMongoCollection<Room> Rooms { get { return this.Database.GetCollection<Room>("Rooms"); } }
 
+        public IMongoCollection<Scheduling> Schedulings { get { return this.Database.GetCollection<Scheduling>("Schedulings"); } }
+
         public IMongoCollection<AppUser> Users { get { return this.Database.GetCollection<AppUser>("Users"); } }
 
     }

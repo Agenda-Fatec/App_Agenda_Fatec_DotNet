@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace App_Agenda_Fatec.Models
@@ -39,6 +41,7 @@ namespace App_Agenda_Fatec.Models
         [Display(Name = "Bloco")]
         public Block? Block { get; set; } = null; // Valor padrão.
 
+        [NotMapped] // Evitando um erro de interpretação do Scaffolder.
         [Display(Name = "Itens")]
         public List<Item> Items { get; set; } = new List<Item>(); // Valor padrão.
 

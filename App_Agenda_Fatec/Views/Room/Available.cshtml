@@ -25,7 +25,7 @@
 
             string text = $"{room.Name} ({room.Number})";
 
-            <a class="room" asp-action="Details" asp-route-id="@room.Id">
+            <a class="room" asp-controller="Scheduling" asp-action="Create" asp-route-room_guid="@room.Id">
 
                 <h2 class="room-name"> @text </h2>
 

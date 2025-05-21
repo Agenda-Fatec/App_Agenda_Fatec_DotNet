@@ -41,7 +41,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (AppUser app_user in (await this._context.Users.Find(FilterDefinition<AppUser>.Empty).ToListAsync()))
             {
 
-                users.Add(await this.GenerateEquivalentObject(app_user));
+                users.Add(await GenerateEquivalentObject(app_user));
 
             }
 
@@ -69,7 +69,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(await this.GenerateEquivalentObject(user));
+            return View(await GenerateEquivalentObject(user));
 
         }
 
@@ -162,7 +162,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(await this.GenerateEquivalentObject(user));
+            return View(await GenerateEquivalentObject(user));
 
         }
 
@@ -194,8 +194,10 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        private async Task<User> GenerateEquivalentObject(AppUser app_user)
+        public static async Task<User> GenerateEquivalentObject(AppUser app_user)
         {
+
+            MongoDBContext database_connection = new MongoDBContext();
 
             User user = new User()
             {
@@ -219,7 +221,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (Guid role_guid in app_user.Roles)
             {
 
-                AppRole role = await this._context.Roles.Find(r => r.Id == role_guid).FirstOrDefaultAsync();
+                AppRole role = await database_connection.Roles.Find(r => r.Id == role_guid).FirstOrDefaultAsync();
 
                 user.Roles = user.Roles.Append(role.Name).ToArray();
 

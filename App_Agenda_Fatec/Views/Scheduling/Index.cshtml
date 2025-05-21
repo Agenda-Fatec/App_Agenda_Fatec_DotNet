@@ -1,0 +1,86 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.Scheduling>
+
+@{
+
+    ViewData["Title"] = "Listagem de Agendamentos";
+
+}
+
+<section id="module-list">
+
+    <h1> Listagem de Agendamentos </h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Requestor) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Room) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Utilization_Date) </th>
+
+                <th> Período </th>
+
+                <th colspan="2"> @Html.DisplayNameFor(model => model.Situation) </th>
+
+                <th> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (Scheduling scheduling in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => scheduling.Requestor.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => scheduling.Room.Name) </td>
+
+                    <td> @Html.DisplayFor(modelItem => scheduling.Utilization_Date) </td>
+
+                    <td> Das @scheduling.Start_Utilization_Time às @scheduling.End_Utilization_Time </td>
+
+                    @{
+
+                        if (scheduling.Situation == "Pendente")
+                        {
+
+                            <td> <a href="#"> Aprovar </a> </td>
+
+                            <td> <a href="#"> Negar </a> </td>
+
+                        }
+
+                        else
+                        {
+
+                            <td colspan="2"> @Html.DisplayFor(modelItem => scheduling.Situation) </td>
+
+                        }
+
+                    }
+
+                    <td> <a asp-action="Details" asp-route-id="@scheduling.Id"> Detalhes </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
+}

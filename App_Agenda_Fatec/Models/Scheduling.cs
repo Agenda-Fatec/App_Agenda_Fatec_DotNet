@@ -37,7 +37,7 @@ namespace App_Agenda_Fatec.Models
         public Guid Room_Guid { get; set; }
 
         [BsonIgnore]
-        [Display(Name = "Sala")]
+        [Display(Name = "Sala Requisitada")]
         public Room? Room { get; set; } = null; // Valor padrão.
 
         [Required]
@@ -51,7 +51,7 @@ namespace App_Agenda_Fatec.Models
         public Guid Approver_Guid { get; set; }
 
         [BsonIgnore]
-        [Display(Name = "Aprovador")]
+        [Display(Name = "Aprovador (Responsável)")]
         public User? Approver { get; set; } = null; // Valor padrão.
 
     }

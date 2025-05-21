@@ -1,0 +1,96 @@
+﻿@model App_Agenda_Fatec.Models.Scheduling
+
+@{
+
+    ViewData["Title"] = "Agendamento de Sala";
+
+}
+
+<section id="scheduling">
+
+    <h1> Agendamento de Sala </h1>
+
+    <form asp-action="Create">
+
+        <div asp-validation-summary="All" class="alert">  </div>
+
+        <input asp-for="Request_Date" type="hidden"/>
+
+        <input asp-for="Request_Time" type="hidden"/>
+
+        <label asp-for="Utilization_Date"> Escolha o dia desejado: </label>
+        <input asp-for="Utilization_Date" type="date" id="data_utilizacao"/>
+
+        <p class="label"> Defina um horário de utilização: </p>
+        <div>
+
+            <input type="hidden" id="period" value="morning">
+
+            <input type="radio" name="period" value="morning" checked>
+            <p> Manhã </p>
+
+            <input type="radio" name="period" value="night">
+            <p> Noite </p>
+
+        </div>
+        <div>
+
+            <label asp-for="Start_Utilization_Time"> Das: </label>
+            <select asp-for="Start_Utilization_Time" id="hora_inicio_utilizacao">
+
+                <!-- Horários - Início -->
+
+            </select>
+
+            <label asp-for="End_Utilization_Time"> Às: </label>
+            <select asp-for="End_Utilization_Time" id="hora_fim_utilizacao">
+
+                <!-- Horários - Fim -->
+
+            </select>
+
+        </div>
+
+        <input asp-for="Situation" type="hidden"/>
+
+        <input asp-for="Room_Guid" type="hidden"/>
+
+        <input asp-for="Requestor_Guid" type="hidden"/>
+
+        <label asp-for="Approver_Guid"> Especifique o responsável pelo seu curso: </label>
+        <select asp-for="Approver_Guid" id="fk_aprovador">
+
+            @foreach (User approver in ViewBag.Approvers)
+            {
+                
+                <option value="@approver.Id"> @approver.Name </option>
+
+            }
+
+        </select>
+
+        <div id="buttons">
+
+            <a asp-controller="Room" asp-action="Available"> Cancelar </a>
+            <button type="reset"> Limpar </button>
+            <button type="submit"> Requisitar </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Agendamento.css" asp-append-version="true"/>
+
+}
+
+@section Scripts {
+
+    <script type="text/javascript" src="~/js/Agendamento.js" asp-append-version="true">  </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
