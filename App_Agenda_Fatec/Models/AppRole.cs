@@ -2,8 +2,6 @@
 
 using MongoDbGenericRepository.Attributes;
 
-using MongoDB.Bson.Serialization.Attributes;
-
 namespace App_Agenda_Fatec.Models
 {
 
@@ -14,9 +12,6 @@ namespace App_Agenda_Fatec.Models
         // Campos personalizados.
 
         public bool? Active { get; set; }
-
-        [BsonIgnore]
-        public string? Activation_Stats { get; set; }
 
     }
 

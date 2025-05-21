@@ -1,0 +1,86 @@
+﻿@model IEnumerable<App_Agenda_Fatec.Models.User>
+
+@{
+
+    ViewData["Title"] = "Listagem de Usuários";
+
+}
+
+<section id="module-list">
+
+    <h1> Listagem de Usuários </h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th> @Html.DisplayNameFor(model => model.Name) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Email) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Phone) </th>
+
+                <th> @Html.DisplayNameFor(model => model.Activation_Stats) </th>
+
+                <th> Administração  </th>
+
+                <th colspan="2"> Opções </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (User user in Model)
+            {
+
+                <tr>
+
+                    <td> @Html.DisplayFor(modelItem => user.Name) </td>
+
+                    <td> @user.Email </td>
+
+                    <td> @Html.DisplayFor(modelItem => user.Phone) </td>
+
+                    <td> @Html.DisplayFor(modelItem => user.Activation_Stats) </td>
+
+                    @{
+
+                        if (user.Administrator)
+                        {
+
+                            <td> <a href="#"> Rebaixar </a> </td>
+
+                        }
+
+                        else
+                        {
+
+                            <td> <a href="#"> Promover </a> </td>
+
+                        }
+
+                    }
+
+                    <td> <a asp-action="Details" asp-route-id="@user.Id"> Detalhes </a> </td>
+
+                    <td> <a asp-action="ModifyActivation" asp-route-id="@user.Id"> Ativar/Desativar </a> </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Listagem.css" asp-append-version="true"/>
+
+}

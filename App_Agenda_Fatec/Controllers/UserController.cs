@@ -1,0 +1,234 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+using App_Agenda_Fatec.Data;
+using App_Agenda_Fatec.Models;
+using MongoDB.Driver;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+
+namespace App_Agenda_Fatec.Controllers
+{
+
+    public class UserController : Controller
+    {
+
+        private readonly MongoDBContext _context;
+
+        private readonly UserManager<AppUser> _app_users_manager;
+
+        public UserController(UserManager<AppUser> app_users_manager)
+        {
+
+            this._context = new MongoDBContext();
+
+            this._app_users_manager = app_users_manager;
+
+        }
+
+        // GET: User
+        public async Task<IActionResult> Index()
+        {
+
+            List<User> users = new List<User>();
+
+            foreach (AppUser app_user in (await this._context.Users.Find(FilterDefinition<AppUser>.Empty).ToListAsync()))
+            {
+
+                users.Add(await this.GenerateEquivalentObject(app_user));
+
+            }
+
+            return View(users);
+
+        }
+
+        // GET: User/Details/5
+        public async Task<IActionResult> Details(Guid? id)
+        {
+
+            if (id == null)
+            {
+
+                return NotFound();
+
+            }
+
+            var user = await _context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+
+                return NotFound();
+
+            }
+
+            return View(await this.GenerateEquivalentObject(user));
+
+        }
+
+        // GET: User/Create
+        public IActionResult Create()
+        {
+
+            return View(new User());
+
+        }
+
+        // POST: User/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user, [Required] [Display(Name = "Confirmação de Senha")] string confirmacao_senha)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                if (user.Password == confirmacao_senha)
+                {
+
+                    AppUser app_user = new AppUser();
+
+                    app_user.Id = Guid.NewGuid();
+
+                    app_user.UserName = Regex.Replace(Models.User.Remove_Accents(user.Name), @"[^a-zA-Z0-9]", "");
+
+                    app_user.Name = user.Name;
+
+                    app_user.Email = user.Email;
+
+                    app_user.PhoneNumber = user.Phone;
+
+                    app_user.Administrator = user.Administrator;
+
+                    app_user.Active = user.Active;
+
+                    IdentityResult user_register_result = await this._app_users_manager.CreateAsync(app_user, user.Password);
+
+                    if (user_register_result.Succeeded)
+                    {
+
+                        return RedirectToAction(nameof(Index));
+
+                    }
+
+                    foreach (IdentityError error in user_register_result.Errors)
+                    {
+
+                        ModelState.AddModelError("", error.Description);
+
+                    }
+
+                }
+
+                else
+                {
+
+                    ModelState.AddModelError("", "As senhas passadas não são iguais!");
+
+                }
+
+            }
+
+            return View(user);
+
+        }
+
+        // GET: User/Delete/5
+        public async Task<IActionResult> ModifyActivation(Guid? id)
+        {
+
+            if (id == null)
+            {
+
+                return NotFound();
+
+            }
+
+            var user = await _context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+
+                return NotFound();
+
+            }
+
+            return View(await this.GenerateEquivalentObject(user));
+
+        }
+
+        // POST: User/Delete/5
+        [HttpPost, ActionName("ModifyActivation")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
+        {
+
+            var user = await _context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+
+                user.Active = !user.Active;
+
+                await this._context.Users.ReplaceOneAsync(u => u.Id == id, user);
+
+            }
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        private bool UserExists(Guid id)
+        {
+
+            return this._context.Users.Find(u => u.Id == id).Any();
+
+        }
+
+        private async Task<User> GenerateEquivalentObject(AppUser app_user)
+        {
+
+            User user = new User()
+            {
+
+                Id = app_user.Id,
+
+                Name = app_user.Name,
+
+                Email = app_user.Email,
+
+                Phone = app_user.PhoneNumber,
+
+                Administrator = app_user.Administrator,
+
+                Active = app_user.Active
+
+            };
+
+            user.Activation_Stats = (user.Active ?? false) ? "Ativado" : "Desativado";
+
+            foreach (Guid role_guid in app_user.Roles)
+            {
+
+                AppRole role = await this._context.Roles.Find(r => r.Id == role_guid).FirstOrDefaultAsync();
+
+                user.Roles = user.Roles.Append(role.Name).ToArray();
+
+            }
+
+            return user;
+
+        }
+
+    }
+
+}

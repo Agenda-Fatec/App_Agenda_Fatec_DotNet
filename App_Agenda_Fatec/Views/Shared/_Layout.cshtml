@@ -9,7 +9,7 @@
 
         <title> @ViewData["Title"] | Agenda Fatec </title>
 
-        <link rel="stylesheet" type="text/css" href="~/css/Global.css"/>
+        <link rel="stylesheet" type="text/css" href="~/css/Global.css" asp-append-version="true"/>
 
         @await RenderSectionAsync("CSS", required: false)
 
@@ -90,7 +90,7 @@
                             else
                             {
 
-                                <a href="#"> Cadastro </a>
+                                <a asp-controller="User" asp-action="Create"> Cadastro </a>
 
                                 <a href="#"> Login </a>
 
@@ -116,7 +116,7 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js">  </script>
         <script src="~/js/site.js" asp-append-version="true">  </script>
 
-        <script type="text/javascript" src="~/js/Global.js">  </script>
+        <script type="text/javascript" src="~/js/Global.js" asp-append-version="true">  </script>
 
         @await RenderSectionAsync("Scripts", required: false)
 

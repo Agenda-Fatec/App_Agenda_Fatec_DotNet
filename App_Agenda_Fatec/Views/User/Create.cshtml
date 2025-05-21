@@ -1,0 +1,84 @@
+﻿@model App_Agenda_Fatec.Models.User
+
+@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title> Cadastro de Usuário | Agenda Fatec </title>
+
+        <link rel="stylesheet" type="text/css" href="~/css/Global.css" asp-append-version="true"/>
+
+        <link rel="stylesheet" type="text/css" href="~/css/Acesso.css" asp-append-version="true"/>
+
+        <script type="text/javascript" src="~/js/Global.js" asp-append-version="true">  </script>
+
+    </head>
+
+    <body>
+
+        <div id="container">
+
+            <main>
+
+                <div id="form">
+
+                    <form asp-action="Create">
+
+                        <figure> <img src="~/img/Storyset/Cadastro.svg" alt="Cadastro"> </figure>
+
+                        <div asp-validation-summary="All" class="alert">  </div>
+                        
+                        <section id="data">
+
+                            <label asp-for="Name"> Digite seu nome completo: </label>
+                            <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
+
+                            <label asp-for="Email"> Digite seu e-mail institucional: </label>
+                            <input asp-for="Email" type="email" id="email" maxlength="100" autocomplete="off"/>
+
+                            <label asp-for="Phone"> Digite seu telefone: </label>
+                            <input asp-for="Phone" type="tel" id="telefone" autocomplete="off"/>
+
+                            <label asp-for="Password"> Crie uma senha: </label>
+                            <input asp-for="Password" type="password" id="senha" minlength="4" maxlength="20"/>
+
+                            <label for="confirmacao_senha"> Confirme sua senha: </label>
+                            <input type="password" id="confirmacao_senha" name="confirmacao_senha" minlength="4" maxlength="20"/>
+
+                            <input asp-for="Administrator" type="hidden"/>
+
+                            <input asp-for="Active" type="hidden"/>
+
+                            <div id="buttons">
+
+                                <a asp-controller="Home" asp-action="Index"> Cancelar </a>
+                                <button type="reset"> Limpar </button>
+                                <button type="submit"> Cadastrar </button>
+
+                            </div>
+
+                            <a id="register" asp-controller="Home" asp-action="Index"> Já possui um cadastro? Clique aqui. </a>
+
+                        </section>
+
+                    </form>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </body>
+
+</html>

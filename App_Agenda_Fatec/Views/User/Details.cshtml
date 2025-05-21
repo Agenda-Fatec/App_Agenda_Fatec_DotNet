@@ -1,16 +1,16 @@
-﻿@model App_Agenda_Fatec.Models.Room
+﻿@model App_Agenda_Fatec.Models.User
 
 @{
 
-    ViewData["Title"] = "Detalhes da Sala";
+    ViewData["Title"] = "Detalhes do Usuário";
 
 }
 
-<h1>Detalhes da Sala</h1>
+<h1>Detalhes do Usuário</h1>
 
 <div>
 
-    <h4>Room</h4>
+    <h4>User</h4>
 
     <hr />
 
@@ -24,24 +24,17 @@
         </dd>
 
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Phone)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Situation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Situation)
+            @Html.DisplayFor(model => model.Phone)
         </dd>
 
         <dt class = "col-sm-2">
@@ -51,20 +44,12 @@
             @Html.DisplayFor(model => model.Activation_Stats)
         </dd>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Block)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Block.Name)
-        </dd>
-
     </dl>
 
 </div>
 
 <div>
 
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 
 </div>

@@ -38,11 +38,9 @@ namespace App_Agenda_Fatec.Models
 
         public bool? Active { get; set; } = true; // Valor padrão.
 
-        [BsonIgnore]
         [Display(Name = "Status")]
         public string? Activation_Stats { get; set; }
 
-        [BsonIgnore]
         [Display(Name = "Cargos")]
         public string[]? Roles { get; set; }
 
