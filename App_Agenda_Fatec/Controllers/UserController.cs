@@ -187,6 +187,24 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        public async Task<IActionResult> Reclassify(Guid id)
+        {
+
+            var user = await this._context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+
+                user.Administrator = !user.Administrator;
+
+                await this._context.Users.ReplaceOneAsync(u => u.Id == id, user);
+
+            }
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
         private bool UserExists(Guid id)
         {
 

@@ -49,19 +49,9 @@
 
                     @{
 
-                        if (user.Administrator)
-                        {
+                        string reclassify = (user.Administrator) ? "Rebaixar" : "Promover";
 
-                            <td> <a href="#"> Rebaixar </a> </td>
-
-                        }
-
-                        else
-                        {
-
-                            <td> <a href="#"> Promover </a> </td>
-
-                        }
+                        <td> <a asp-action="Reclassify" asp-route-id="@user.Id"> @reclassify </a> </td>
 
                     }
 

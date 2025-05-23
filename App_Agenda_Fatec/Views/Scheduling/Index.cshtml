@@ -52,9 +52,9 @@
                         if (scheduling.Situation == "Pendente")
                         {
 
-                            <td> <a href="#"> Aprovar </a> </td>
+                            <td> <a asp-action="Decision" asp-route-id="@scheduling.Id" asp-route-situation="Aprovado"> Aprovar </a> </td>
 
-                            <td> <a href="#"> Negar </a> </td>
+                            <td> <a asp-action="Decision" asp-route-id="@scheduling.Id" asp-route-situation="Negado"> Negar </a> </td>
 
                         }
 

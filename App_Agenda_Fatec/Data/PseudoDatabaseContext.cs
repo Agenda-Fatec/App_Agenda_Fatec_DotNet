@@ -32,7 +32,7 @@ namespace App_Agenda_Fatec.Data
 
         public DbSet<Models.User> Users { get; set; } = default!;
 
-        // Definindo que a classe Item é utilizada somente como suporte (Não possui ID).
+        // Definindo que a classe "Item" é utilizada somente como suporte (Não possui ID.).
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

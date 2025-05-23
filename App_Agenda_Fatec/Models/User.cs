@@ -42,7 +42,7 @@ namespace App_Agenda_Fatec.Models
         public string? Activation_Stats { get; set; }
 
         [Display(Name = "Cargos")]
-        public string?[]? Roles { get; set; }
+        public string?[] Roles { get; set; } = {  }; // Valor padrão.
 
         // Aprofundamento: https://gist.github.com/PabloValentin94/67343c258863eb1d157b881bf5adb074
 

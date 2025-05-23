@@ -170,6 +170,24 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        public async Task<IActionResult> Decision(Guid id, string situation)
+        {
+
+            var scheduling = await this._context.Schedulings.Find(s => s.Id == id).FirstOrDefaultAsync();
+
+            if (scheduling != null)
+            {
+
+                scheduling.Situation = situation;
+
+                await this._context.Schedulings.ReplaceOneAsync(s => s.Id == id, scheduling);
+
+            }
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
         private bool SchedulingExists(Guid id)
         {
 
