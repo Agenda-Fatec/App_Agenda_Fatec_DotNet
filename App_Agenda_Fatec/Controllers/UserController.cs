@@ -212,7 +212,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        public static async Task<User> GenerateEquivalentObject(AppUser app_user)
+        public static async Task<User> GenerateEquivalentObject(AppUser document)
         {
 
             MongoDBContext database_connection = new MongoDBContext();
@@ -220,23 +220,23 @@ namespace App_Agenda_Fatec.Controllers
             User user = new User()
             {
 
-                Id = app_user.Id,
+                Id = document.Id,
 
-                Name = app_user.Name,
+                Name = document.Name,
 
-                Email = app_user.Email,
+                Email = document.Email,
 
-                Phone = app_user.PhoneNumber,
+                Phone = document.PhoneNumber,
 
-                Administrator = app_user.Administrator,
+                Administrator = document.Administrator,
 
-                Active = app_user.Active
+                Active = document.Active
 
             };
 
             user.Activation_Stats = (user.Active) ? "Ativado" : "Desativado";
 
-            foreach (Guid role_guid in app_user.Roles)
+            foreach (Guid role_guid in document.Roles)
             {
 
                 AppRole role = await database_connection.Roles.Find(r => r.Id == role_guid).FirstOrDefaultAsync();

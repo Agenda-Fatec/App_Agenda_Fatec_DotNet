@@ -1,0 +1,75 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title> Login de Usuário | Agenda Fatec </title>
+
+        <link rel="stylesheet" type="text/css" href="~/css/Global.css" asp-append-version="true"/>
+
+        <link rel="stylesheet" type="text/css" href="~/css/Acesso.css" asp-append-version="true"/>
+
+    </head>
+
+    <body>
+
+        <div id="container">
+
+            <main>
+
+                <div id="form">
+
+                    <form asp-action="Login">
+
+                        <figure> <img src="~/img/Storyset/Login.svg" alt="Login"> </figure>
+
+                        <div asp-validation-summary="All" class="alert">  </div>
+
+                        <section id="data">
+
+                            <label for="email"> Digite seu e-mail institucional: </label>
+                            <input type="email" id="email" name="email" maxlength="100" autocomplete="off">
+
+                            <label for="senha"> Digite sua senha do Agenda Fatec: </label>
+                            <input type="password" id="senha" name="password" maxlength="20">
+
+                            <label for="manter_conectado"> Lembre de mim: </label>
+                            <select id="manter_conectado" name="keep_connected">
+
+                                <option value="@true"> Sim </option>
+                                <option value="@false"> Não </option>
+
+                            </select>
+
+                            <div id="buttons">
+
+                                <a asp-controller="Home" asp-action="Index"> Cancelar </a>
+                                <button type="reset"> Limpar </button>
+                                <button type="submit"> Entrar </button>
+
+                            </div>
+
+                            <a id="register" asp-controller="User" asp-action="Create"> Não possui um cadastro? Clique aqui. </a>
+
+                        </section>
+
+                    </form>
+
+                </div>
+
+            </main>
+
+        </div>
+        
+    </body>
+
+</html>

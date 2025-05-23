@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Identity;
 
 namespace App_Agenda_Fatec.Controllers
 {
@@ -18,10 +19,14 @@ namespace App_Agenda_Fatec.Controllers
 
         private readonly MongoDBContext _context;
 
-        public SchedulingController()
+        private readonly UserManager<AppUser> _app_users_manager;
+
+        public SchedulingController(UserManager<AppUser> app_users_manager)
         {
 
             this._context = new MongoDBContext();
+
+            this._app_users_manager = app_users_manager;
 
         }
 
@@ -94,7 +99,9 @@ namespace App_Agenda_Fatec.Controllers
             return View(new Scheduling()
             {
 
-                Room_Guid = room_guid
+                Room_Guid = room_guid,
+
+                Requestor_Guid = Guid.Parse(Request.Cookies[".Login.User"])
 
             });
 

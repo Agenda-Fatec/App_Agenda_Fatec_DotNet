@@ -32,33 +32,32 @@
                     <a asp-controller="Home" asp-action="Team"> Equipe </a>
                     <a asp-controller="Home" asp-action="Help"> Ajuda </a>
 
-                    @{
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
 
-                        // Testando (Será corrigido após a implementação do login.).
+                        string[][] modules = [
+                        
+                            ["Requisições", "Scheduling"],
+                            ["Blocos", "Block"],
+                            ["Cargos", "Role"],
+                            ["Equipamentos", "Equipment"],
+                            ["Salas", "Room"],
+                            ["Usuários", "User"]
+                            
+                        ];
 
-                        if (true)
-                        {
+                        <details>
 
-                            string[][] modules = [["Blocos", "Block"], ["Cargos", "Role"], ["Equipamentos", "Equipment"], ["Salas", "Room"]];
+                            <summary> Administração </summary>
 
-                            <details>
+                            @foreach (string[] module in modules)
+                            {
 
-                                <summary> Administração </summary>
+                                <a asp-controller="@module[1]" asp-action="Index"> @module[0] </a>
 
-                                <a asp-controller="Scheduling" asp-action="Index"> Requisições </a>
+                            }
 
-                                @foreach (string[] module in modules)
-                                {
-
-                                    <a asp-controller="@module[1]" asp-action="Index"> @module[0] </a>
-
-                                }
-
-                                <a asp-controller="User" asp-action="Index"> Usuários </a>
-
-                            </details>
-
-                        }
+                        </details>
 
                     }
 
@@ -83,7 +82,7 @@
                             if (User?.Identity?.IsAuthenticated ?? false)
                             {
 
-                                <a id="logout" href="#"> Sair </a>
+                                <a id="logout" asp-controller="Auth" asp-action="Logout"> Sair </a>
 
                             }
 
@@ -92,7 +91,7 @@
 
                                 <a asp-controller="User" asp-action="Create"> Cadastro </a>
 
-                                <a href="#"> Login </a>
+                                <a asp-controller="Auth" asp-action="Login"> Login </a>
 
                             }
 

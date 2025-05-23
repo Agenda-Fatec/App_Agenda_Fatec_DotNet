@@ -39,7 +39,7 @@ namespace App_Agenda_Fatec.Controllers
             foreach (AppRole app_role in (await this._context.Roles.Find(FilterDefinition<AppRole>.Empty).ToListAsync()))
             {
 
-                roles.Add(this.GenerateEquivalentObject(app_role));
+                roles.Add(GenerateEquivalentObject(app_role));
 
             }
 
@@ -67,7 +67,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(this.GenerateEquivalentObject(role));
+            return View(GenerateEquivalentObject(role));
 
         }
 
@@ -145,7 +145,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(this.GenerateEquivalentObject(role));
+            return View(GenerateEquivalentObject(role));
 
         }
 
@@ -251,7 +251,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return View(this.GenerateEquivalentObject(role));
+            return View(GenerateEquivalentObject(role));
 
         }
 
@@ -280,7 +280,7 @@ namespace App_Agenda_Fatec.Controllers
 
                     }
 
-                    return View(this.GenerateEquivalentObject(role));
+                    return View(GenerateEquivalentObject(role));
 
                 }
 
@@ -297,7 +297,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        private Role GenerateEquivalentObject(AppRole document)
+        public static Role GenerateEquivalentObject(AppRole document)
         {
 
             Role role = new Role()
