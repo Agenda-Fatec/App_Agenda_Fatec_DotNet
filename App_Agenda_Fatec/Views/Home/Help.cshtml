@@ -24,7 +24,7 @@
 
                 Para requistar uma sala para utilização, você precisa ter um cadastro.
                 Clique no botão "Cadastro", localizado no canto superior direito da tela, ou
-                <a href="/cadastro"> clique aqui </a> para realizá-lo.
+                <a asp-controller="User" asp-action="Create">clique aqui</a> para realizá-lo.
                 <br><br>
                 Ao entrar na página de cadastro, preencha os campos com os seguintes dados:
 
@@ -58,7 +58,7 @@
             <p>
 
                 Caso já possua um cadastro, mas ainda não esteja logado, clique no botão "Login",
-                localizado no canto superior direito da tela, ou <a href="/login"> clique aqui </a>
+                localizado no canto superior direito da tela, ou <a asp-controller="Auth" asp-action="Login">clique aqui</a>
                 para fazê-lo.
                 <br><br>
                 Ao entrar na página de login, preencha os campos com os seguintes dados:
@@ -92,7 +92,7 @@
                 clique em "Salas" para visualizar todas as salas cadastradas no sistema. Após isso, clique na
                 sala que deseja requisitar.
                 <br><br>
-                Para ser redirecionado automaticamente até a página de listagem de salas, <a href="/salas"> clique aqui </a>.
+                Para ser redirecionado automaticamente até a página de listagem de salas, <a asp-controller="Room" asp-action="Available">clique aqui</a>.
 
             </p>
 
