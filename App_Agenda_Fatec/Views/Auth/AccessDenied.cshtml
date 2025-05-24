@@ -4,31 +4,18 @@
 
 }
 
-<h1> Erro de Permissão! </h1>
+<section id="error">
 
-<hr />
+    <figure> <img src="~/img/Storyset/Inautorizado.svg" alt="Acesso Negado"> </figure>
 
-<div class="row">
+    <h2> Acesso Negado! </h2>
 
-    <div class="col-md-4">
+    <p> O usuário logado não tem permissão para acessar esse recurso. </p>
 
-        <div asp-validation-summary="All" class="text-danger">  </div>
-
-        <p> O usuário autenticado não possui permissão para acessar o recurso requisitado! </p>
-
-    </div>
-
-</div>
-
-<div>
-
-    <br />
-    <a asp-controller="Home" asp-action="Index"> Back to Home </a>
-
-</div>
+</section>
 
 @section CSS {
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/Erro.css" asp-append-version="true"/>
 
 }

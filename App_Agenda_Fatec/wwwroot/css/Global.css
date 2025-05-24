@@ -134,6 +134,12 @@ body {
 
 }
 
+#container main section:nth-child(1) {
+
+    padding: 80px 15px 15px 15px;
+
+}
+
 .alert {
 
     font-weight: bold;

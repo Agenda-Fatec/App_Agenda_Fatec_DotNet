@@ -15,11 +15,10 @@
     justify-content: center;
     gap: 50px;
     background-color: transparent;
-    padding: 15px;
 
 }
 
-#erro figure {
+#error figure {
 
     height: 300px;
     width: 300px;
@@ -27,7 +26,7 @@
 
 }
 
-#erro figure img {
+#error figure img {
 
     height: 100%;
     width: 100%;
