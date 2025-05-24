@@ -63,7 +63,9 @@
 
 }
 
-#form form #data label, #form form #data input, #form form #data select {
+#form form #data label,
+#form form #data input,
+#form form #data select {
 
     background-color: transparent;
     font-size: 20px;
@@ -78,7 +80,8 @@
 
 }
 
-#form form #data input, #form form #data select {
+#form form #data input,
+#form form #data select {
 
     width: 100%;
     border: 1px solid var(--neutral-color);
@@ -88,7 +91,8 @@
 
 }
 
-#form form #data input:focus, #form form #data select:focus {
+#form form #data input:focus,
+#form form #data select:focus {
 
     border: 1px solid var(--contrast-color);
 
@@ -106,7 +110,8 @@
 
 }
 
-#form form #data #register, #form form #data #login {
+#form form #data #register,
+#form form #data #login {
 
     font-size: 18px;
     color: var(--neutral-color);
@@ -116,7 +121,8 @@
 
 }
 
-#form form #data #register:hover, #form form #data #login:hover {
+#form form #data #register:hover,
+#form form #data #login:hover {
 
     color: var(--contrast-color);
 

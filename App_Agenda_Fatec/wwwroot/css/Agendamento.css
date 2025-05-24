@@ -55,7 +55,11 @@
 
 }
 
-#scheduling form label, #scheduling form .label, #scheduling form input, #scheduling form select, #scheduling form div p {
+#scheduling form label,
+#scheduling form .label,
+#scheduling form input,
+#scheduling form select,
+#scheduling form div p {
 
     background-color: transparent;
     font-size: 20px;
@@ -63,14 +67,16 @@
 
 }
 
-#scheduling form label, #scheduling form .label {
+#scheduling form label,
+#scheduling form .label {
 
     font-weight: bold;
     cursor: text;
 
 }
 
-#scheduling form input, #scheduling form select {
+#scheduling form input,
+#scheduling form select {
 
     width: 100%;
     border: 1px solid var(--neutral-color);
@@ -80,7 +86,8 @@
 
 }
 
-#scheduling form input:focus, #scheduling form select:focus {
+#scheduling form input:focus,
+#scheduling form select:focus {
 
     border: 1px solid var(--contrast-color);
 

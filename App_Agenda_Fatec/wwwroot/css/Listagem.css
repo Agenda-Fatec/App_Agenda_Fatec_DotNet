@@ -37,7 +37,8 @@
 
 }
 
-#module-list table thead tr th, #module-list table tbody tr td {
+#module-list table thead tr th,
+#module-list table tbody tr td {
 
     font-size: 20px;
     text-align: center;
@@ -61,15 +62,8 @@
 
 }
 
-#module-list table tbody tr td input[type="checkbox"] {
-
-    height: 20px;
-    width: 20px;
-    accent-color: var(--main-color);
-
-}
-
-#module-list #new-register, #module-list table tbody tr td a {
+#module-list #new-register,
+#module-list table tbody tr td a {
 
     border-radius: 5px;
     text-decoration: none;
@@ -95,7 +89,8 @@
 
 }
 
-#module-list #new-register, #module-list table tbody tr td a:hover {
+#module-list #new-register,
+#module-list table tbody tr td a:hover {
 
     background-color: var(--contrast-color);
     border: 2px solid var(--contrast-color);

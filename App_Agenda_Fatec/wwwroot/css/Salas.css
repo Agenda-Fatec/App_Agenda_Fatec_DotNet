@@ -127,7 +127,8 @@
 
     }
 
-    #rooms #images, #rooms #list {
+    #rooms #images,
+    #rooms #list {
 
         height: auto;
         width: 100%;

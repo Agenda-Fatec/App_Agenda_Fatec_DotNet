@@ -4,7 +4,9 @@
 
 /* Styles: */
 
-#home, #about, #contact {
+#home,
+#about,
+#contact {
 
     height: auto;
     width: 100%;
@@ -18,7 +20,8 @@
 
 }
 
-#home, #about {
+#home,
+#about {
 
     flex-direction: row;
 
@@ -30,7 +33,9 @@
 
 }
 
-#home article, #about article, #contact article {
+#home article,
+#about article,
+#contact article {
 
     display: flex;
     flex-direction: column;
@@ -39,7 +44,8 @@
 
 }
 
-#home article, #about article {
+#home article,
+#about article {
 
     max-width: 50%;
     align-items: flex-start;
@@ -53,29 +59,37 @@
 
 }
 
-#home article .emphasis, #about article .emphasis, #contact article .emphasis {
+#home article .emphasis,
+#about article .emphasis,
+#contact article .emphasis {
 
     color: var(--main-color);
     font-weight: bold;
 
 }
 
-#home article h2, #home article h1, #home article p
-#about article h2, #about article p {
+#home article h2,
+#home article h1,
+#home article p
+#about article h2,
+#about article p {
 
     max-width: 100%;
     text-align: left;
 
 }
 
-#contact article h2, #contact article p {
+#contact article h2,
+#contact article p {
 
     max-width: 100%;
     text-align: center;
 
 }
 
-#home article h2, #about article h2, #contact article h2 {
+#home article h2,
+#about article h2,
+#contact article h2 {
 
     max-width: 100%;
     font-size: 30px;
@@ -94,7 +108,9 @@
 
 }
 
-#home article p, #about article p, #contact article p {
+#home article p,
+#about article p,
+#contact article p {
 
     width: 600px;
     max-width: 100%;
@@ -104,7 +120,9 @@
 
 }
 
-#home figure, #about figure, #contact figure {
+#home figure,
+#about figure,
+#contact figure {
 
     min-height: 450px;
     min-width: 450px;
@@ -117,7 +135,9 @@
 
 }
 
-#home figure img, #about figure img, #contact figure img {
+#home figure img,
+#about figure img,
+#contact figure img {
 
     height: 100%;
     width: 100%;
@@ -159,14 +179,16 @@
 
 }
 
-#contact article p a, #contact article #links a i {
+#contact article p a,
+#contact article #links a i {
 
     color: var(--contrast-color);
     transition: 0.5s;
 
 }
 
-#contact article p a:hover, #contact article #links a:hover i {
+#contact article p a:hover,
+#contact article #links a:hover i {
 
     color: var(--main-color);
 
@@ -188,21 +210,27 @@
 
     }
 
-    #home article, #about article {
+    #home article,
+    #about article {
 
         max-width: 100%;
         align-items: center;
 
     }
 
-    #home article h2, #home article h1, #home article p,
-    #about article h2, #about article p {
+    #home article h2,
+    #home article h1,
+    #home article p,
+    #about article h2,
+    #about article p {
 
         text-align: center;
     
     }
 
-    #home figure, #about figure, #contact figure {
+    #home figure,
+    #about figure,
+    #contact figure {
 
         min-height: 300px;
         min-width: 300px;

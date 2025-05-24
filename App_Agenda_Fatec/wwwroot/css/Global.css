@@ -80,7 +80,8 @@ body {
 
 }
 
-#container header nav button, #container header nav #access a {
+#container header nav button,
+#container header nav #access a {
 
     display: flex;
     flex-direction: row;
@@ -99,10 +100,13 @@ body {
 #container header nav #access a {
 
     text-decoration: none;
+    text-align: center;
 
 }
 
-#container header nav button, #container header nav #access a, #container header nav #access:hover > a:not(:hover) {
+#container header nav button,
+#container header nav #access a,
+#container header nav #access:hover > a:not(:hover) {
 
     background-color: var(--page-color);
     border: 2px solid var(--neutral-color);
@@ -110,7 +114,9 @@ body {
 
 }
 
-#container header nav button:hover, #container header nav #access a:nth-child(2), #container header nav #access a:hover {
+#container header nav button:hover,
+#container header nav #access a:nth-child(2),
+#container header nav #access a:hover {
 
     background-color: var(--main-color);
     border: 2px solid var(--main-color);
@@ -168,7 +174,8 @@ input[type="checkbox"] {
 
 }
 
-#buttons a, #buttons button {
+#buttons a,
+#buttons button {
 
     display: flex;
     flex-direction: row;
@@ -178,6 +185,7 @@ input[type="checkbox"] {
     font-size: 20px;
     font-weight: bold;
     color: var(--neutral-color);
+    text-align: center;
     padding: 5px;
     cursor: pointer;
     transition: 0.5s;

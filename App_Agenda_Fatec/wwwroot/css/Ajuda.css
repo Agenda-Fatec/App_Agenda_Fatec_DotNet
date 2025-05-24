@@ -140,7 +140,9 @@
 
 }
 
-#help #contact form label, #help #contact form input, #help #contact form textarea {
+#help #contact form label,
+#help #contact form input,
+#help #contact form textarea {
 
     background-color: transparent;
     font-size: 20px;
@@ -155,7 +157,8 @@
 
 }
 
-#help #contact form input, #help #contact form textarea {
+#help #contact form input,
+#help #contact form textarea {
 
     width: 100%;
     border: 1px solid var(--neutral-color);
@@ -173,7 +176,8 @@
 
 }
 
-#help #contact form input:focus, #help #contact form textarea:focus {
+#help #contact form input:focus,
+#help #contact form textarea:focus {
 
     border: 1px solid var(--contrast-color);
 

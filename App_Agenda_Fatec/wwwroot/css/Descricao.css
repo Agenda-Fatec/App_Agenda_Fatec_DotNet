@@ -38,7 +38,8 @@
 
 }
 
-#module-item-description dl dt, #module-item-description dl dd {
+#module-item-description dl dt,
+#module-item-description dl dd {
 
     text-align: center;
 
