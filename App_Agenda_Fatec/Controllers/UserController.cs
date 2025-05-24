@@ -80,6 +80,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: User/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
 
@@ -92,6 +93,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user, [Required] [Display(Name = "Confirmação de Senha")] string confirmacao_senha)
         {
 
