@@ -15,7 +15,7 @@
     justify-content: center;
     gap: 15px;
     background-color: transparent;
-    padding: 15px;
+    padding: 80px 15px 15px 15px;
 
 }
 
@@ -95,58 +95,6 @@
 #scheduling form div select {
 
     width: 130px;
-
-}
-
-#scheduling form #buttons {
-
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-
-}
-
-#scheduling form #buttons a, #scheduling form #buttons button {
-
-    width: 120px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--neutral-color);
-    padding: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-
-}
-
-#scheduling form #buttons a {
-
-    text-decoration: none;
-
-}
-
-#scheduling form #buttons button, #scheduling form #buttons a,
-#scheduling form #buttons:hover > button:not(:hover), #scheduling form #buttons:hover > a:not(:hover) {
-
-    background-color: transparent;
-    border: 2px solid var(--neutral-color);
-    color: var(--neutral-color);
-
-}
-
-#scheduling form #buttons button:hover, #scheduling form #buttons button:nth-child(3), #scheduling form #buttons a:hover {
-
-    background-color: var(--main-color);
-    border: 2px solid var(--main-color);
-    color: var(--page-color);
 
 }
 

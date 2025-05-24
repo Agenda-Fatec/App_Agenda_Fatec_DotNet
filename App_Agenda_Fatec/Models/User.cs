@@ -34,6 +34,7 @@ namespace App_Agenda_Fatec.Models
         public string? Password { get; set; }
 
         [BsonIgnore]
+        [Display(Name = "Administrador")]
         public bool Administrator { get; set; } = false; // Valor padrão.
 
         public bool Active { get; set; } = true; // Valor padrão.

@@ -92,7 +92,6 @@
 
 #help #tutorial .tutorial-step ul li {
 
-    /* border: 1px solid var(--neutral-color); */
     font-size: 20px;
     text-align: center;
     padding: 10px;
@@ -177,51 +176,6 @@
 #help #contact form input:focus, #help #contact form textarea:focus {
 
     border: 1px solid var(--contrast-color);
-
-}
-
-#help #contact form #buttons {
-
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-
-}
-
-#help #contact form #buttons button {
-
-    width: 120px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--neutral-color);
-    padding: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-
-}
-
-#help #contact form #buttons button, #help #contact form #buttons:hover > button:not(:hover) {
-
-    background-color: transparent;
-    border: 2px solid var(--neutral-color);
-    color: var(--neutral-color);
-
-}
-
-#help #contact form #buttons button:hover, #help #contact form #buttons button:nth-child(2) {
-
-    background-color: var(--main-color);
-    border: 2px solid var(--main-color);
-    color: var(--page-color);
 
 }
 

@@ -12,7 +12,7 @@
 
     <form asp-action="Add">
 
-        <div asp-validation-summary="ModelOnly"></div>
+        <div asp-validation-summary="All"></div>
 
         <label asp-for="Quantity">Quantidade:</label>
         <input asp-for="Quantity" type="number" id="quantidade" min="1" max="300" autocomplete="off"/>
@@ -36,8 +36,10 @@
         <div id="buttons">
 
             <a asp-controller="Room" asp-action="Details" asp-route-id="@ViewBag.Room"> Cancelar </a>
+
             <button type="reset"> Limpar </button>
-            <button type="submit"> Salvar </button>
+
+            <button id="focus" type="submit"> Salvar </button>
 
         </div>
 

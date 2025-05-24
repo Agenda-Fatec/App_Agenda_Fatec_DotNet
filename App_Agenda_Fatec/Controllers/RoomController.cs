@@ -91,6 +91,13 @@ namespace App_Agenda_Fatec.Controllers
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
 
+            foreach (Item item in room.Items)
+            {
+
+                item.Equipment = await this._context.Equipments.Find(e => e.Id == item.Equipment_Guid).FirstOrDefaultAsync();
+
+            }
+
             return View(room);
 
         }
@@ -229,6 +236,13 @@ namespace App_Agenda_Fatec.Controllers
             room.Activation_Stats = (room.Active) ? "Ativada" : "Desativada";
 
             room.Block = await this._context.Blocks.Find(b => b.Id == room.Block_Guid).FirstOrDefaultAsync();
+
+            foreach (Item item in room.Items)
+            {
+
+                item.Equipment = await this._context.Equipments.Find(e => e.Id == item.Equipment_Guid).FirstOrDefaultAsync();
+
+            }
 
             return View(room);
 

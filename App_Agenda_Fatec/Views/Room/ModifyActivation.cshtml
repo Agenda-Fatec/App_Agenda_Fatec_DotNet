@@ -6,65 +6,81 @@
 
 }
 
-<h1>Alteração da Ativação da Sala</h1>
+<div id="module-item-description">
 
-<div>
+    <h1> Alteração da Ativação da Sala </h1>
 
-    <h4>Room</h4>
+    <dl>
 
-    <hr />
+        <dt> @Html.DisplayNameFor(model => model.Name) </dt>
 
-    <dl class="row">
+        <dd> @Html.DisplayFor(model => model.Name) </dd>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.Number) </dt>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Number)
-        </dd>
+        <dd> @Html.DisplayFor(model => model.Number) </dd>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.Description)</dt>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Situation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Situation)
-        </dd>
+        <dd> @Html.DisplayFor(model => model.Description) </dd>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Activation_Stats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Activation_Stats)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.Situation) </dt>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Block)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Block.Name)
+        <dd> @Html.DisplayFor(model => model.Situation) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Block) </dt>
+
+        <dd> @Html.DisplayFor(model => model.Block.Name) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Activation_Stats) </dt>
+
+        <dd> @Html.DisplayFor(model => model.Activation_Stats) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Items) </dt>
+
+        <dd>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th> Equipamento </th>
+                        <th> Quantidade </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (Item item in Model.Items)
+                    {
+
+                        <tr>
+
+                            <td> @item.Equipment.Name </td>
+                            <td> @item.Quantity </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
         </dd>
 
     </dl>
-    
-    <form asp-action="ModifyActivation">
 
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Modificar" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form id="buttons" asp-action="ModifyActivation">
+
+        <a asp-action="Index"> Cancelar </a>
+
+        <input asp-for="Id" type="hidden"/>
+        <button id="focus" type="submit"> Modificar </button>
 
     </form>
 
@@ -72,6 +88,6 @@
 
 @section CSS {
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/Descricao.css" asp-append-version="true"/>
 
 }
