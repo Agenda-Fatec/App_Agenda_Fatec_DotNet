@@ -9,13 +9,17 @@ using Microsoft.EntityFrameworkCore;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
+
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace App_Agenda_Fatec.Controllers
 {
 
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
 
@@ -38,7 +42,7 @@ namespace App_Agenda_Fatec.Controllers
 
             List<User> users = new List<User>();
 
-            foreach (AppUser app_user in (await this._context.Users.Find(FilterDefinition<AppUser>.Empty).ToListAsync()))
+            foreach (AppUser app_user in (await this._context.Users.Find(u => u.Id != Guid.Parse(Request.Cookies[".Login.User"])).ToListAsync()))
             {
 
                 users.Add(await GenerateEquivalentObject(app_user));
@@ -115,6 +119,8 @@ namespace App_Agenda_Fatec.Controllers
 
                     if (user_register_result.Succeeded)
                     {
+
+                        await this._app_users_manager.AddToRoleAsync(app_user, "Comum");
 
                         return RedirectToAction(nameof(Index));
 
@@ -198,6 +204,10 @@ namespace App_Agenda_Fatec.Controllers
                 user.Administrator = !user.Administrator;
 
                 await this._context.Users.ReplaceOneAsync(u => u.Id == id, user);
+
+                await this._app_users_manager.RemoveFromRoleAsync(user, (user.Administrator) ? "Comum" : "Admin");
+
+                await this._app_users_manager.AddToRoleAsync(user, (user.Administrator) ? "Admin" : "Comum");
 
             }
 

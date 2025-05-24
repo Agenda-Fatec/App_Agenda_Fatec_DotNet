@@ -10,9 +10,12 @@ using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace App_Agenda_Fatec.Controllers
 {
 
+    [Authorize(Roles = "Admin")]
     public class EquipmentController : Controller
     {
 

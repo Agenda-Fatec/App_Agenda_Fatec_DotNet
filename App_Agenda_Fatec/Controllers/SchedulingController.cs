@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
-using Microsoft.AspNetCore.Identity;
+
+using Microsoft.AspNetCore.Authorization;
 
 namespace App_Agenda_Fatec.Controllers
 {
@@ -19,18 +20,15 @@ namespace App_Agenda_Fatec.Controllers
 
         private readonly MongoDBContext _context;
 
-        private readonly UserManager<AppUser> _app_users_manager;
-
-        public SchedulingController(UserManager<AppUser> app_users_manager)
+        public SchedulingController()
         {
 
             this._context = new MongoDBContext();
 
-            this._app_users_manager = app_users_manager;
-
         }
 
         // GET: Scheduling
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
 
@@ -52,6 +50,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(Guid? id)
         {
 
@@ -82,6 +81,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Create
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> Create(Guid room_guid)
         {
 
@@ -112,6 +112,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> Create([Bind("Id,Request_Date,Request_Time,Utilization_Date,Start_Utilization_Time,End_Utilization_Time,Situation,Room_Guid,Requestor_Guid,Approver_Guid")] Scheduling scheduling)
         {
 
@@ -122,7 +123,7 @@ namespace App_Agenda_Fatec.Controllers
 
                 await this._context.Schedulings.InsertOneAsync(scheduling);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
 
             }
 
@@ -131,6 +132,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid? id)
         {
 
@@ -163,6 +165,7 @@ namespace App_Agenda_Fatec.Controllers
         // POST: Scheduling/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
 
@@ -177,6 +180,8 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        // GET: Scheduling/Decision
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Decision(Guid id, string situation)
         {
 

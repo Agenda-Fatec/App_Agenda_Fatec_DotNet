@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
+
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -31,7 +32,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Auth/Login
+        // GET: Account/Login
         [HttpGet("Login")]
         public IActionResult Login()
         {
@@ -40,7 +41,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // POST: Auth/Login
+        // POST: Account/Login
         [HttpPost("Login")]
         public async Task<IActionResult> Login([Required][EmailAddress(ErrorMessage = "E-mail inválido.")] string email, [Required] string password, bool keep_connected)
         {
@@ -83,7 +84,7 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
-        // GET: Auth/Logout
+        // GET: Account/Logout
         [HttpGet("Logout")]
         public async Task<IActionResult> Logout()
         {
@@ -93,6 +94,15 @@ namespace App_Agenda_Fatec.Controllers
             await this._login_manager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+
+        }
+
+        // GET: Account/AccessDenied
+        [HttpGet("AccessDenied")]
+        public IActionResult AccessDenied()
+        {
+
+            return View();
 
         }
 
