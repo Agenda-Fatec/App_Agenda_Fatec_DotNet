@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
+
 using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Authorization;

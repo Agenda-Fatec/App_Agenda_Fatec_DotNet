@@ -50,7 +50,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Details/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(Guid? id)
         {
 
@@ -132,7 +131,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> Delete(Guid? id)
         {
 
@@ -165,7 +164,7 @@ namespace App_Agenda_Fatec.Controllers
         // POST: Scheduling/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
 

@@ -10,6 +10,7 @@ using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
 
 using Microsoft.AspNetCore.Identity;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace App_Agenda_Fatec.Controllers

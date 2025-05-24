@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using App_Agenda_Fatec.Data;
 using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
+
 using System.ComponentModel.DataAnnotations;
 
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace App_Agenda_Fatec.Controllers
 {
 
+    [Authorize(Roles = "Admin")]
     public class RoomController : Controller
     {
 
@@ -29,7 +31,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room/Available
-        [Authorize(Roles = "Comum")]
+        [AllowAnonymous]
         public async Task<IActionResult> Available()
         {
 
@@ -47,7 +49,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
 
@@ -67,7 +68,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room/Details/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(Guid? id)
         {
 
@@ -96,7 +96,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room/Create
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
         {
 
@@ -111,7 +110,6 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,Number,Description,Situation,Active,Block_Guid")] Room room, [Required] Guid block_guid)
         {
 
@@ -131,7 +129,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(Guid? id)
         {
 
@@ -162,7 +159,6 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Number,Description,Situation,Active,Block_Guid")] Room room, [Required] Guid block_guid)
         {
 
@@ -211,7 +207,6 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Room/ModifyActivation/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -242,7 +237,6 @@ namespace App_Agenda_Fatec.Controllers
         // POST: Room/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
         {
 

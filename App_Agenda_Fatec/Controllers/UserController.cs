@@ -11,7 +11,9 @@ using App_Agenda_Fatec.Models;
 using MongoDB.Driver;
 
 using Microsoft.AspNetCore.Identity;
+
 using System.ComponentModel.DataAnnotations;
+
 using System.Text.RegularExpressions;
 
 using Microsoft.AspNetCore.Authorization;
