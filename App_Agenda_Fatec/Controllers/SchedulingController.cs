@@ -113,7 +113,7 @@ namespace App_Agenda_Fatec.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Comum")]
-        public async Task<IActionResult> Create([Bind("Id,Request_Date,Request_Time,Utilization_Date,Start_Utilization_Time,End_Utilization_Time,Situation,Room_Guid,Requestor_Guid,Approver_Guid")] Scheduling scheduling)
+        public async Task<IActionResult> Create([Bind("Utilization_Date,Start_Utilization_Time,End_Utilization_Time,Room_Guid,Requestor_Guid,Approver_Guid")] Scheduling scheduling)
         {
 
             if (ModelState.IsValid)
@@ -176,7 +176,7 @@ namespace App_Agenda_Fatec.Controllers
 
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Profile", "Auth");
 
         }
 

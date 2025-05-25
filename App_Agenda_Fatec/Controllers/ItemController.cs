@@ -47,7 +47,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add([Bind("Id,Quantity,Equipment_Guid")] Item item, [Required] Guid room_guid, [Required] Guid equipment_guid)
+        public async Task<IActionResult> Add([Bind("Quantity,Equipment_Guid")] Item item, [Required] Guid room_guid)
         {
 
             if (ModelState.IsValid)
@@ -55,13 +55,13 @@ namespace App_Agenda_Fatec.Controllers
 
                 Room room = await this._context.Rooms.Find(r => r.Id == room_guid).FirstOrDefaultAsync();
 
-                if (this.ItemExists(room.Items, equipment_guid))
+                if (this.ItemExists(room.Items, item.Equipment_Guid))
                 {
 
                     foreach (Item room_item in room.Items)
                     {
 
-                        if (room_item.Equipment_Guid == equipment_guid)
+                        if (room_item.Equipment_Guid == item.Equipment_Guid)
                         {
 
                             room_item.Quantity += item.Quantity;

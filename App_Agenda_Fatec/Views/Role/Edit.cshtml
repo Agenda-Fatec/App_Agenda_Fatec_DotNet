@@ -12,7 +12,7 @@
 
     <form asp-action="Edit">
 
-        <div asp-validation-summary="All" class="alert"></div>
+        <div asp-validation-summary="ModelOnly" class="alert">  </div>
 
         <input asp-for="Id" type="hidden"/>
 
@@ -20,15 +20,13 @@
         <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
         <span asp-validation-for="Name" class="alert"></span>
 
-        <input asp-for="Active" type="hidden"/>
-
         <div id="buttons">
 
             <a asp-action="Index"> Cancelar </a>
 
             <button type="reset"> Limpar </button>
 
-            <button id="focus" type="submit"> Salvar </button>
+            <button id="focus" type="submit"> Editar </button>
 
         </div>
 

@@ -10,13 +10,15 @@
 
     <h1> Remoção de Item </h1>
 
+    <div asp-validation-summary="All" class="alert">  </div>
+
     <dl>
 
         <dt> @Html.DisplayNameFor(model => model.Quantity) </dt>
 
         <dd> @Html.DisplayFor(model => model.Quantity) </dd>
 
-        <dt> @Html.DisplayNameFor(model => model.Equipment)</dt>
+        <dt> @Html.DisplayNameFor(model => model.Equipment) </dt>
 
         <dd> @Html.DisplayFor(model => model.Equipment.Name) </dd>
 

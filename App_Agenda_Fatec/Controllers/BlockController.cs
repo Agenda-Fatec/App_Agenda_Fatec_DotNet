@@ -84,7 +84,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Active")] Block block)
+        public async Task<IActionResult> Create([Bind("Name,Description")] Block block)
         {
 
             if (ModelState.IsValid)
@@ -131,7 +131,7 @@ namespace App_Agenda_Fatec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Active")] Block block)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description")] Block block)
         {
 
             if (id != block.Id)

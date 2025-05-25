@@ -12,14 +12,11 @@
 
     <form asp-action="Create">
 
-        <div asp-validation-summary="All" class="alert">  </div>
-
-        <input asp-for="Request_Date" type="hidden"/>
-
-        <input asp-for="Request_Time" type="hidden"/>
+        <div asp-validation-summary="ModelOnly" class="alert">  </div>
 
         <label asp-for="Utilization_Date"> Escolha o dia desejado: </label>
         <input asp-for="Utilization_Date" type="date" id="data_utilizacao"/>
+        <span asp-validation-for="Utilization_Date" class="alert">  </span>
 
         <p class="label"> Defina um horário de utilização: </p>
         <div>
@@ -41,6 +38,7 @@
                 <!-- Horários - Início -->
 
             </select>
+            <span asp-validation-for="Start_Utilization_Time" class="alert">  </span>
 
             <label asp-for="End_Utilization_Time"> Às: </label>
             <select asp-for="End_Utilization_Time" id="hora_fim_utilizacao">
@@ -48,10 +46,9 @@
                 <!-- Horários - Fim -->
 
             </select>
+            <span asp-validation-for="End_Utilization_Time" class="alert">  </span>
 
         </div>
-
-        <input asp-for="Situation" type="hidden"/>
 
         <input asp-for="Room_Guid" type="hidden"/>
 
@@ -68,6 +65,7 @@
             }
 
         </select>
+        <span asp-validation-for="Utilization_Date" class="alert">  </span>
 
         <div id="buttons">
 
@@ -91,8 +89,8 @@
 
 @section Scripts {
 
-    <script type="text/javascript" src="~/js/Agendamento.js" asp-append-version="true">  </script>
-
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript" src="~/js/Agendamento.js" asp-append-version="true">  </script>
 
 }

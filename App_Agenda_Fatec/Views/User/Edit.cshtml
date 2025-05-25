@@ -12,24 +12,23 @@
 
     <form asp-action="Edit">
 
-        <div asp-validation-summary="All" class="alert">  </div>
+        <div asp-validation-summary="ModelOnly" class="alert">  </div>
                         
         <input asp-for="Id" type="hidden"/>
 
         <label asp-for="Name"> Digite seu nome completo: </label>
         <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
+        <span asp-validation-for="Name" class="alert">  </span>
 
         <label asp-for="Email"> Digite seu e-mail institucional: </label>
         <input asp-for="Email" type="email" id="email" maxlength="100" autocomplete="off"/>
+        <span asp-validation-for="Email" class="alert">  </span>
 
         <label asp-for="Phone"> Digite seu telefone: </label>
         <input asp-for="Phone" type="tel" id="telefone" autocomplete="off"/>
+        <span asp-validation-for="Phone" class="alert">  </span>
 
         <input asp-for="Password" type="hidden"/>
-
-        <input asp-for="Administrator" type="hidden"/>
-
-        <input asp-for="Active" type="hidden"/>
 
         <div id="buttons">
 

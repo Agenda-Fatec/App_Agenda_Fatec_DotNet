@@ -13,10 +13,10 @@ namespace App_Agenda_Fatec.Models
         public Guid Id { get { return this._id; } set { this._id = value; } }
 
         [Display(Name = "Data de Requisição")]
-        public DateOnly Request_Date { get; set; } = DateOnly.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
+        public DateOnly Request_Date { get; set; } = DateOnly.Parse(DateTime.Now.ToString("dd/MM/yyyy")); // Valor padrão.
 
         [Display(Name = "Hora de Requisição")]
-        public TimeOnly Request_Time { get; set; } = TimeOnly.Parse(DateTime.Now.ToString("HH:mm:ss"));
+        public TimeOnly Request_Time { get; set; } = TimeOnly.Parse(DateTime.Now.ToString("HH:mm:ss")); // Valor padrão.
 
         [Required]
         [Display(Name = "Data de Utilização")]

@@ -95,7 +95,7 @@ namespace App_Agenda_Fatec.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user, [Required][Display(Name = "Confirmação de Senha")] string confirmacao_senha)
+        public async Task<IActionResult> Create([Bind("Name,Email,Phone,Password")] User user, [Required][Display(Name = "Confirmação de Senha")] string confirmacao_senha)
         {
 
             if (ModelState.IsValid)
@@ -186,7 +186,7 @@ namespace App_Agenda_Fatec.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Email,Phone,Password")] User user)
         {
 
             if (id != user.Id)
