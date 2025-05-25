@@ -1,0 +1,52 @@
+﻿@model App_Agenda_Fatec.Models.User
+
+@{
+
+    ViewData["Title"] = "Edição de Usuário";
+
+}
+
+<section id="module-form">
+
+    <h1> Edição de Usuário </h1>
+
+    <form asp-action="Edit">
+
+        <div asp-validation-summary="All" class="alert">  </div>
+                        
+        <input asp-for="Id" type="hidden"/>
+
+        <label asp-for="Name"> Digite seu nome completo: </label>
+        <input asp-for="Name" type="text" id="nome" maxlength="255" autocomplete="off"/>
+
+        <label asp-for="Email"> Digite seu e-mail institucional: </label>
+        <input asp-for="Email" type="email" id="email" maxlength="100" autocomplete="off"/>
+
+        <label asp-for="Phone"> Digite seu telefone: </label>
+        <input asp-for="Phone" type="tel" id="telefone" autocomplete="off"/>
+
+        <input asp-for="Password" type="hidden"/>
+
+        <input asp-for="Administrator" type="hidden"/>
+
+        <input asp-for="Active" type="hidden"/>
+
+        <div id="buttons">
+
+            <a asp-controller="Auth" asp-action="Profile"> Cancelar </a>
+                                
+            <button type="reset"> Limpar </button>
+                                
+            <button id="focus" type="submit"> Editar </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Form.css" asp-append-version="true"/>
+
+}

@@ -111,15 +111,10 @@ namespace App_Agenda_Fatec.Controllers
 
                 }
 
-                else
+                foreach (IdentityError error in create_result.Errors)
                 {
 
-                    foreach (IdentityError error in create_result.Errors)
-                    {
-
-                        ModelState.AddModelError("", error.Description);
-
-                    }
+                    ModelState.AddModelError("", error.Description);
 
                 }
 
@@ -196,15 +191,10 @@ namespace App_Agenda_Fatec.Controllers
 
                     }
 
-                    else
+                    foreach (IdentityError error in update_result.Errors)
                     {
 
-                        foreach (IdentityError error in update_result.Errors)
-                        {
-
-                            ModelState.AddModelError("", error.Description);
-
-                        }
+                        ModelState.AddModelError("", error.Description);
 
                     }
 

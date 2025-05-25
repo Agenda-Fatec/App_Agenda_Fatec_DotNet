@@ -20,12 +20,16 @@ namespace App_Agenda_Fatec.Controllers
     public class AuthController : Controller
     {
 
+        private readonly MongoDBContext _context;
+
         private readonly SignInManager<AppUser> _login_manager;
 
         private readonly UserManager<AppUser> _app_users_manager;
 
         public AuthController(SignInManager<AppUser> login_manager, UserManager<AppUser> app_users_manager)
         {
+
+            this._context = new MongoDBContext();
 
             this._login_manager = login_manager;
 
@@ -104,6 +108,39 @@ namespace App_Agenda_Fatec.Controllers
         {
 
             return View();
+
+        }
+
+        // GET: Auth/Profile
+        [HttpGet("Profile")]
+        public async Task<IActionResult> Profile()
+        {
+
+            User? login_user = await UserController.GenerateEquivalentObject(await this._app_users_manager.FindByIdAsync(Request.Cookies[".Login.User"]));
+
+            if (login_user == null)
+            {
+
+                return NotFound();
+
+            }
+
+            List<Scheduling> schedulings = await this._context.Schedulings.Find(s => s.Requestor_Guid == Guid.Parse(Request.Cookies[".Login.User"])).ToListAsync();
+
+            foreach (Scheduling scheduling in schedulings)
+            {
+
+                scheduling.Room = await this._context.Rooms.Find(r => r.Id == scheduling.Room_Guid).FirstOrDefaultAsync();
+
+                scheduling.Requestor = await UserController.GenerateEquivalentObject(await this._context.Users.Find(r => r.Id == scheduling.Requestor_Guid).FirstOrDefaultAsync());
+
+                scheduling.Approver = await UserController.GenerateEquivalentObject(await this._context.Users.Find(a => a.Id == scheduling.Approver_Guid).FirstOrDefaultAsync());
+
+            }
+
+            ViewBag.Schedulings = schedulings;
+
+            return View(login_user);
 
         }
 

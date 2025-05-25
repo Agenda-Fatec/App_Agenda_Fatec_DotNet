@@ -124,6 +124,32 @@ body {
 
 }
 
+#container header nav #access span {
+
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+
+#container header nav #access span a,
+#container header nav #access span a:hover {
+
+    height: 100%;
+    width: 100%;
+    background-color: var(--main-color);
+    border: none;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #FFFFFF;
+
+}
+
 #container main {
 
     height: auto;

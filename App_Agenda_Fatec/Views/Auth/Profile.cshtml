@@ -1,0 +1,95 @@
+﻿@model App_Agenda_Fatec.Models.User
+
+@{
+
+    ViewData["Title"] = "Perfil de Usuário";
+
+}
+
+<section id="profile">
+
+    <h1> Dados do Perfil </h1>
+
+    <dl>
+
+        <dt> @Html.DisplayNameFor(model => model.Name) </dt>
+
+        <dd> @Html.DisplayFor(model => model.Name) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Email)</dt>
+
+        <dd> @Html.DisplayFor(model => model.Email) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.Phone)</dt>
+
+        <dd> @Html.DisplayFor(model => model.Phone) </dd>
+
+    </dl>
+
+    <div id="buttons">
+
+        <a asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id"> Editar Dados </a>
+
+    </div>
+
+    @if (ViewBag.Schedulings.Count > 0)
+    {
+        
+        <h1> Agendamentos Requisitados </h1>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th> Sala </th>
+
+                    <th> Data de Utilização </th>
+
+                    <th> Período </th>
+
+                    <th> Situação Atual </th>
+
+                    <th colspan="2"> Opções </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (Scheduling scheduling in ViewBag.Schedulings)
+                {
+
+                    <tr>
+
+                        <td> @scheduling.Room.Name </td>
+
+                        <td> @scheduling.Utilization_Date </td>
+
+                        <td> Das @scheduling.Start_Utilization_Time às @scheduling.End_Utilization_Time </td>
+
+                        <td> @scheduling.Situation </td>
+
+                        <td> <a asp-controller="Scheduling" asp-action="Details" asp-route-id="@scheduling.Id"> Detalhes </a> </td>
+
+                        <td> <a asp-controller="Scheduling" asp-action="Delete" asp-route-id="@scheduling.Id"> Deletar </a> </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    }
+
+</section>
+
+@section CSS {
+
+    <link rel="stylesheet" type="text/css" href="~/css/Perfil.css" asp-append-version="true"/>
+
+}

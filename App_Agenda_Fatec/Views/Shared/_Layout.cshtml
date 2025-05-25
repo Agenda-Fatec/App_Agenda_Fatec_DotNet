@@ -84,6 +84,8 @@
 
                                 <a id="logout" asp-controller="Auth" asp-action="Logout"> Sair </a>
 
+                                <span title="Perfil"> <a asp-controller="Auth" asp-action="Profile"> @User.Identity.Name[0] </a>  </span>
+
                             }
 
                             else

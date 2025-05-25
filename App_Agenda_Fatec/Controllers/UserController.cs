@@ -21,7 +21,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace App_Agenda_Fatec.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
 
@@ -39,6 +38,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: User
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
 
@@ -56,6 +56,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: User/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(Guid? id)
         {
 
@@ -94,7 +95,7 @@ namespace App_Agenda_Fatec.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user, [Required] [Display(Name = "Confirmação de Senha")] string confirmacao_senha)
+        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user, [Required][Display(Name = "Confirmação de Senha")] string confirmacao_senha)
         {
 
             if (ModelState.IsValid)
@@ -152,7 +153,121 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        // GET: User/Edit/5
+        [Authorize]
+        public async Task<IActionResult> Edit(Guid? id)
+        {
+
+            if (id == null)
+            {
+
+                return NotFound();
+
+            }
+
+            var app_user = await this._context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+            if (app_user == null)
+            {
+
+                return NotFound();
+
+            }
+
+            User user = await GenerateEquivalentObject(app_user);
+
+            user.Password = app_user.PasswordHash;
+
+            return View(user);
+
+        }
+
+        // POST: User/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Email,Phone,Password,Administrator,Active")] User user)
+        {
+
+            if (id != user.Id)
+            {
+
+                return NotFound();
+
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                try
+                {
+
+                    AppUser app_user = await this._context.Users.Find(u => u.Id == id).FirstOrDefaultAsync();
+
+                    if (app_user == null)
+                    {
+
+                        return NotFound();
+
+                    }
+
+                    app_user.UserName = Regex.Replace(Models.User.Remove_Accents(user.Name), @"[^a-zA-Z0-9]", "");
+
+                    app_user.Name = user.Name;
+
+                    app_user.Email = user.Email;
+
+                    app_user.PhoneNumber = user.Phone;
+
+                    app_user.Administrator = user.Administrator;
+
+                    app_user.Active = user.Active;
+
+                    IdentityResult user_update_result = await this._app_users_manager.UpdateAsync(app_user);
+
+                    if (user_update_result.Succeeded)
+                    {
+
+                        return RedirectToAction("Profile", "Auth");
+
+                    }
+
+                    foreach (IdentityError error in user_update_result.Errors)
+                    {
+
+                        ModelState.AddModelError("", error.Description);
+
+                    }
+
+                }
+
+                catch (DbUpdateConcurrencyException)
+                {
+
+                    if (!UserExists(user.Id))
+                    {
+
+                        return NotFound();
+
+                    }
+
+                    else
+                    {
+
+                        throw;
+
+                    }
+
+                }
+
+            }
+
+            return View(user);
+
+        }
+
         // GET: User/ModifyActivation/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ModifyActivation(Guid? id)
         {
 
@@ -179,6 +294,7 @@ namespace App_Agenda_Fatec.Controllers
         // POST: User/ModifyActivation/5
         [HttpPost, ActionName("ModifyActivation")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ModifyActivationConfirmed(Guid id)
         {
 
@@ -197,6 +313,8 @@ namespace App_Agenda_Fatec.Controllers
 
         }
 
+        // GET: User/Reclassify/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Reclassify(Guid id)
         {
 

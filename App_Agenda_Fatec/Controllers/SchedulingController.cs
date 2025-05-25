@@ -50,6 +50,7 @@ namespace App_Agenda_Fatec.Controllers
         }
 
         // GET: Scheduling/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(Guid? id)
         {
 
