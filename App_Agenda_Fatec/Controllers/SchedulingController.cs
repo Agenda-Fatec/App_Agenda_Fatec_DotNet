@@ -32,7 +32,7 @@ namespace App_Agenda_Fatec.Controllers
         public async Task<IActionResult> Index()
         {
 
-            List<Scheduling> schedulings = await this._context.Schedulings.Find(FilterDefinition<Scheduling>.Empty).ToListAsync();
+            List<Scheduling> schedulings = await this._context.Schedulings.Find(s => s.Approver_Guid == Guid.Parse(Request.Cookies[".Login.User"])).ToListAsync();
 
             foreach (Scheduling scheduling in schedulings)
             {

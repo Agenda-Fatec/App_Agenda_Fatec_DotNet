@@ -202,15 +202,15 @@
 
             const data = new FormData(event.target);
 
-            const name = data.get("nome").trim();
+            const name = data.get("nome").toString().trim();
 
-            const sender_email = data.get("email_rementente").trim();
+            const sender_email = data.get("email_rementente").toString().trim();
 
-            const recipient_email = data.get("email_destinatario").trim();
+            const recipient_email = data.get("email_destinatario").toString().trim();
 
-            const subject = data.get("assunto").trim();
+            const subject = data.get("assunto").toString().trim();
 
-            const message = data.get("mensagem").trim().concat("%0D%0A%0D%0A");
+            const message = data.get("mensagem").toString().trim().concat("%0D%0A%0D%0A");
 
             const link = `${recipient_email}?subject=${subject}&body=${message}(${name} | ${sender_email}).`;
 

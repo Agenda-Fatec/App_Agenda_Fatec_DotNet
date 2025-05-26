@@ -36,44 +36,49 @@
 
         <dd> @Html.DisplayFor(model => model.Activation_Stats) </dd>
 
-        <dt> @Html.DisplayNameFor(model => model.Items) </dt>
+        @if (Model.Items.Count > 0)
+        {
+            
+            <dt> @Html.DisplayNameFor(model => model.Items) </dt>
 
-        <dd>
+            <dd>
 
-            <table>
+                <table>
 
-                <thead>
-
-                    <tr>
-
-                        <th> Equipamento </th>
-                        <th> Quantidade </th>
-                        <th> Remoção </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    @foreach (Item item in Model.Items)
-                    {
+                    <thead>
 
                         <tr>
 
-                            <td> @item.Equipment.Name </td>
-                            <td> @item.Quantity </td>
-                            <td> <a asp-controller="Item" asp-action="Remove" asp-route-room_guid="@Model.Id" asp-route-equipment_guid="@item.Equipment_Guid"> Remover </a> </td>
+                            <th> Equipamento </th>
+                            <th> Quantidade </th>
+                            <th> Remoção </th>
 
                         </tr>
 
-                    }
+                    </thead>
 
-                </tbody>
+                    <tbody>
 
-            </table>
+                        @foreach (Item item in Model.Items)
+                        {
 
-        </dd>
+                            <tr>
+
+                                <td> @item.Equipment.Name </td>
+                                <td> @item.Quantity </td>
+                                <td> <a asp-controller="Item" asp-action="Remove" asp-route-room_guid="@Model.Id" asp-route-equipment_guid="@item.Equipment_Guid"> Remover </a> </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </dd>
+
+        }
 
     </dl>
 
